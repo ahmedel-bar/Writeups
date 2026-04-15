@@ -9,7 +9,7 @@ The objective is to determine the competitor website visited by Amber by analyzi
 
 To begin the investigation, we search for Amber-related events:
 
-index="botsv2" amber 
+- index="botsv2" amber 
 
 Then, we focus on PAN traffic logs to extract her IP address:
 
