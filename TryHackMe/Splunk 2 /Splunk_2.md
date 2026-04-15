@@ -31,7 +31,7 @@ To narrow down the results and focus on websites:
 
 | dedup site  ` to remove duplicated ` 
 | table site
-![Visited Websites] (Splunk2/Images/1.png)
+![Visited Websites](Images/1.png)
 
 
 
