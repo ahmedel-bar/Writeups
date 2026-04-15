@@ -74,24 +74,32 @@ then click `show as raw text` to show all info
 Answer: `Martin Berk`
 
 #### Q4: What is the CEO's email address?
+
 with the same query above you can find sender_email: mberk@berkbeer.com
+
 Answer: `mberk@berkbeer.com`
 
 #### Q5: After the initial contact with the CEO, Amber contacted another employee at this competitor. What is that employee's email address?
 - index="botsv2" smtp  aturing@froth.ly berkbeer
   you will find another email address from the same company
+  
   ![another employee mail](Images/4.png)
+  
   Answer : `hbernhard@berkbeer.com`
 
 #### Q6: What is the name of the file attachment that Amber sent to a contact at the competitor?
-- index="botsv2" smtp  aturing@froth.ly berkbeer 
+- index="botsv2" smtp  aturing@froth.ly berkbeer
+
 ![attachment](Images/5.png)
+
 Answer: `Saccharomyces_cerevisiae_patent.docx`
 
 #### Q7: What is Amber's personal email address?
 by invistigate the same event from above question, you will find the content-type is base64 decode 
 ![content-type](Images/6.png)
+
  use [cyberchef](https://cyberchef.org) to decode 
+ 
 ![decoded mail](Images/7.png)
 
 Answer: `ambersthebest@yeastiebeastie.com`
