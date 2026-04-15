@@ -21,7 +21,7 @@ you will find the  `src_ip: 10.0.1.200`
 
 After identifying Amber's IP address, we analyze her web activity:
 
-index="botsv2" IPADDR sourcetype="stream:HTTP" 
+*index="botsv2" IPADDR sourcetype="stream:HTTP" 
 
 you can navigate to  `http_referrer` to see all visited websites 
 
