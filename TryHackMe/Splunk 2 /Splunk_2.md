@@ -55,7 +55,7 @@ This allowed us to identify email exchanges and extract additional details such 
 #### Q2: Amber found the executive contact information and sent him an email. What image file displayed the executive's contact information? Answer example: /path/image.ext
 
 you can you this query 
-- index="botsv2" 10.0.2.101 sourcetype="stream:HTTP" www.berkbeer.com 
+- index="botsv2" 10.0.2.101 sourcetype="stream:HTTP" "www.berkbeer.com" 
 | table uri_path 
 | dedup uri_path
 
@@ -71,14 +71,14 @@ by using this query
 by the way, SMTP protocol is Simple Mail Transfer Protocol which is related to mails 
   you will find amber mail `aturing@froth.ly`
   
-use this - index="botsv2" smtp  aturing@froth.ly ceo
+use this - index="botsv2" smtp  "aturing@froth.ly" ceo
 then click `show as raw text` to show all info 
 ![ceo name and mail](Images/3.png)
 Answer: `Martin Berk`
 
 #### Q4: What is the CEO's email address?
 
-with the same query above you can find sender_email: mberk@berkbeer.com
+with the same query above you can find sender_email: "mberk@berkbeer.com"
 
 Answer: `mberk@berkbeer.com`
 
@@ -92,7 +92,7 @@ you will find another email address from the same company
   Answer : `hbernhard@berkbeer.com`
 
 #### Q6: What is the name of the file attachment that Amber sent to a contact at the competitor?
-- index="botsv2" smtp  aturing@froth.ly berkbeer
+- index="botsv2" smtp  "aturing@froth.ly" berkbeer
 
 ![attachment](Images/5.png)
 
