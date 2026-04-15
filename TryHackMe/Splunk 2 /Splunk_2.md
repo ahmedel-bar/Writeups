@@ -29,9 +29,9 @@ you can navigate to  `http_referrer` to see all visited websites
 
 To narrow down the results and focus on websites:
 
-| dedup site  ` to remove duplicated `
+| dedup site  ` to remove duplicated ` 
 | table site
-
+![Visited Websites] (images/1.png)
 
 
 
