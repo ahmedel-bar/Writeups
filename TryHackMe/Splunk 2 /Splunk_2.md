@@ -231,7 +231,7 @@ by going down you will find
 
 google it 
 
-![](Images/21.png) 
+![google](Images/21.png) 
 
 Answer: `Alcor Micro Corp.`
 
@@ -239,13 +239,13 @@ Answer: `Alcor Micro Corp.`
 
 using the last query from previouse question you will find the username when event occur 
 
-![](Images/22.png)  
+![image](Images/22.png)  
 
 now you need to know more about maliciuose file 
 
 - index="botsv2" kutekitten mkraeusen
 
-![](Images/23.png)  
+![iamge](Images/23.png)  
 
 include it in your query 
 
@@ -253,11 +253,11 @@ include it in your query
 
 now you found the hash value of the malicious file 
 
-![](Images/24.png)  
+![vt analysis](Images/24.png)  
 
 analyze it using [Virus total](https://www.virustotal.com)
 
-![](Images/25.png)  
+![vt](Images/25.png)  
 
 as you see above the file is marked as malicious 
 
@@ -273,7 +273,7 @@ Answer: `2017-01-17 19:09:06`
 
 form virus total in the relation tab you will find the next 
 
-![](Images/25.png)  
+![relations](Images/26.png)  
 
 Answer: `eidk.duckdns.org`
 
