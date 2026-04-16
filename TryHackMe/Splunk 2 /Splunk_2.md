@@ -370,8 +370,19 @@ gp = Get-ItemProperty which take value from debug key
 
 - index="botsv2 HKLM:\\Software\\Microsoft\\Network
 
+you will see the data section is encoded using base64 
+
+![decoded](Images/37.png)
+
+you can decode it using (cyberchef)[https://cyberchef.org/] 
+
+![decoded](Images/38.png)
+
+Answer: `process.php`
 
 
+## The End 
+# I hope you find it useful.
 
 
 
