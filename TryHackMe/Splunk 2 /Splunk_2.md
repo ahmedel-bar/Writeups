@@ -189,8 +189,111 @@ the attacke stole Kevien's CSRF token
 
 Answer: `kIagerfield`
 
+# 300 series questions
+
+#### Q1: Mallory's critical PowerPoint presentation on her MacBook gets encrypted by ransomware on August 18. What is the name of this file after it was encrypted?
+
+first you need to know the mallory's host 
+
+- index="botsv2" mallory
+
+![](Images/18.png)
+
+as you already know the power point extension is .pptx or .ppt 
+
+- index="botsv2" host="NAME_MACBOOK"
+
+![](Images/17.png) 
+
+Answer: `Frothly_marketing_campaign_Q317.pptx.crypt` 
+
+#### Q2: There is a Games of Thrones movie file that was encrypted as well. What season and episode is it?  
+
+Since you don't know the file extension, you can't use the same approach as before.  
+
+you need to search for all encrypted files. 
+
+- index="botsv2"  host="MACLORY-AIR13" .crypt
+
+![](Images/19.png) 
+
+Answer: `S07E02` 
 
 
+#### Q3: Kevin Lagerfield used a USB drive to move malware onto kutekitten, Mallory's personal MacBook. She ran the malware, which obfuscates itself during execution. Provide the vendor name of the USB drive Kevin likely used. Answer Guidance: Use time correlation to identify the USB drive.
+
+ use the next query 
+ - index="botsv2"  kutekitten usb
+
+by going down you will find 
+
+![](Images/20.png) 
+
+google it 
+
+![](Images/21.png) 
+
+Answer: `Alcor Micro Corp.`
+
+#### Q4: What programming language is at least part of the malware from the question above written in?
+
+using the last query from previouse question you will find the username when event occur 
+
+![](Images/22.png)  
+
+now you need to know more about maliciuose file 
+
+- index="botsv2" kutekitten mkraeusen
+
+![](Images/23.png)  
+
+include it in your query 
+
+- index="botsv2" kutekitten mkraeusen name=file_events
+
+now you found the hash value of the malicious file 
+
+![](Images/24.png)  
+
+analyze it using [](https://www.virustotal.com)
+
+![](Images/25.png)  
+
+as you see above the file is marked as malicious 
+
+Answer: `perl`
+
+#### Q5: When was this malware first seen in the wild? Answer Guidance: YYYY-MM-DD
+
+from the same photo above you can find it 
+
+Answer: `2017-01-17 19:09:06`
+
+#### Q6: The malware infecting kutekitten uses dynamic DNS destinations to communicate with two C&C servers shortly after installation. What is the fully-qualified domain name (FQDN) of the first (alphabetically) of these destinations? 
+
+form virus total in the relation tab you will find the next 
+
+![](Images/25.png)  
+
+Answer: `eidk.duckdns.org`
+
+#### Q7: From the question above, what is the fully-qualified domain name (FQDN) of the second (alphabetically) contacted C&C server?
+
+the answer is in the photo above 
+
+Answer: `eidk.hopto.org`
+
+
+# 400 series questions
+
+
+
+
+
+
+
+
+  
 
 
 
