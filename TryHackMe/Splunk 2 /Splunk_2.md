@@ -286,6 +286,89 @@ Answer: `eidk.hopto.org`
 
 # 400 series questions
 
+#### Q1: A Federal law enforcement agency reports that Taedonggang often spear phishes its victims with zip files that have to be opened with a password. What is the name of the attachment sent to Frothly by a malicious Taedonggang actor?
+
+because of it's a spear phishing attack, it's mostly via email so we will use sourcetype=stream:smtp 
+
+- index="botsv2"  source="stream:smtp" .zip
+
+![relations](Images/27.png)  
+
+Answer: `invoice.zip`
+
+#### Q2: What is the password to open the zip file?
+
+with the same query above you can find the password 
+
+Answer: `912345678`
+
+#### Q3: The Taedonggang APT group encrypts most of their traffic with SSL. What is the "SSL Issuer" that they use for the majority of their traffic? Answer guidance: Copy the field exactly, including spaces.
+
+remember the attacker ip from `Q3 in 200 series` = `45.77.65.211` 
+
+![attacker ip](Images/28.png)  
+
+so we will include it in our query 
+
+- index="botsv2" 45.77.65.211 ssl
+
+search on the fields for ssl_issuer 
+
+![sll](Images/29.png)
+
+![sll](Images/30.png)
+
+Answer: `C = US`
+
+
+#### Q4: What unusual file (for an American company) does winsys32.dll cause to be downloaded into the Frothly environment?
+
+- index="botsv2"  winsys32.dll
+by using this query i found that ftp connection start and take its command from winsys32.dll
+
+![ftp](Images/31.png)
+
+so we will switch stream  to ftp 
+
+- index="botsv2" sourcetype=stream:ftp RETR
+
+the RETR method in FTP means retrieve which means download from ftp server, so we will include it in our query 
+
+![RETR](Images/32.png)
+
+Answer: `나는_데이비드를_사랑한다.hwp`
+
+#### Q5: What is the first and last name of the poor innocent sap who was implicated in the metadata of the file that executed PowerShell Empire on the first victim's workstation? Answer example: John Smith
+
+the task provide some useful links, you can examine any of them and search for the answers in metadata 
+
+![RETR](Images/33.png)
+
+
+[VT](https://www.virustotal.com/gui/file/d8834aaa5ad6d8ee5ae71e042aca5cab960e73a6827e45339620359633608cf1/detection) 
+
+![RETR](Images/34.png)
+
+Answer: `Ryan Kovar`
+
+
+#### Q6: Within the document, what kind of points is mentioned if you found the text?
+
+by user the (AnyRun)[https://app.any.run/tasks/15d17cd6-0eb6-4f52-968d-0f897fd6c3b3] to dynamic analysis
+
+![RETR](Images/35.png)
+
+Answer: `CyberEastEgg`
+
+#### Q7: To maintain persistence in the Frothly network, Taedonggang APT configured several Scheduled Tasks to beacon back to their C2 server. What single webpage is most contacted by these Scheduled Tasks? Answer example: index.php or images.html
+
+- index="botsv2" schtasks.exe  sourcetype=wineventlog create
+
+![HKLM](Images/36.png)
+
+gp = Get-ItemProperty which take value from debug key
+
+- index="botsv2 HKLM:\\Software\\Microsoft\\Network
 
 
 
