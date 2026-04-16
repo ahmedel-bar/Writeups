@@ -255,7 +255,7 @@ now you found the hash value of the malicious file
 
 ![](Images/24.png)  
 
-analyze it using [](https://www.virustotal.com)
+analyze it using [Virus total](https://www.virustotal.com)
 
 ![](Images/25.png)  
 
