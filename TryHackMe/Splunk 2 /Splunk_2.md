@@ -354,7 +354,7 @@ Answer: `Ryan Kovar`
 
 #### Q6: Within the document, what kind of points is mentioned if you found the text?
 
-by user the (AnyRun)[https://app.any.run/tasks/15d17cd6-0eb6-4f52-968d-0f897fd6c3b3] to dynamic analysis
+by user the [AnyRun](https://app.any.run/tasks/15d17cd6-0eb6-4f52-968d-0f897fd6c3b3) to dynamic analysis
 
 ![RETR](Images/35.png)
 
@@ -374,7 +374,7 @@ you will see the data section is encoded using base64
 
 ![decoded](Images/37.png)
 
-you can decode it using (cyberchef)[https://cyberchef.org/] 
+you can decode it using [cyberchef](https://cyberchef.org/)
 
 ![decoded](Images/38.png)
 
