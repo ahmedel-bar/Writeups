@@ -1,7 +1,16 @@
-<img width="1031" height="192" alt="image" src="https://github.com/user-attachments/assets/0086cd8e-58bc-47ff-ab5e-b84d1d729ad4" /># Hunter lab wrtieup 
+<img width="1919" height="270" alt="image" src="https://github.com/user-attachments/assets/c9898a25-5837-4482-8003-70f13a4ec3fe" /><img width="1031" height="192" alt="image" src="https://github.com/user-attachments/assets/0086cd8e-58bc-47ff-ab5e-b84d1d729ad4" /># Hunter lab wrtieup 
 ## Category : Endpoint Forensics 
 ## Tools : 
+- Useful cheat sheet ![](Images/windowsFOR.pdf) 
 - AccessData_FTK_Imager
+- reistery explorer
+- timeline explorer
+- PECmd.exe
+- SysTools Outlook PST Viewer
+- skyperious
+- ShellBags explorer
+- Exiftool 
+- JLECmd.exe
 
 
 ## scenario 
@@ -122,6 +131,7 @@ we need now to export the whole folder
 
 after that we need to analyze this folder 
 we can analyze it using `PECmd.exe` from EZtools 
+use this command `PECmd.exe -d Prefetch --csv <folder to save in> --csvf <file name>`
 
 ![](Images/16.png) 
 
@@ -232,17 +242,186 @@ Answer: `Ryan_VanAntwerp_thesis.pdf`
 
 #### Q19: What was the name of the Disk Encryption application Installed on the victim system? (two words space separated)
 
+installed programmers are found in these to paths: `SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall`
+                                                   `SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths`
+I searched in both but found nothing related to Disk Encryption 
+
+so, I tried to search in Programmer Files (x86) and i found this file
+
+![](Images/32.png)  
+
+ by searching in this file I found that he deleted some files and apps by bcwipe to remove evidence 
+
+ ![](Images/33.png)  
+
+Answer: `Crypto Swap`
 
 
 
+#### Q20: What are the serial numbers of the two identified USB storage?
 
+the hive that contains USB identification `SYSTEM\CurrentControlSet\Enum\USBSTOR`
 
+ ![](Images/34.png)
 
+ Answer: `07B20C03C80830A9,AAI6UXDKZDV8E9OU`
  
 
 
+#### Q21: One of the installed applications is a file shredder. What is the name of the application? (two words space separated)
+ shredder is used to damage and delete files
 
-.
+ you can find it in the `Uninstall.log` or from the same photo you can see the `wipeList.txt`
+
+ ![](Images/35.png)
+ ![](Images/36.png)
+
+ Answer: `Jetico BCWipe`
+
+
+
+#### Q22: How many prefetch files were discovered on the system?
+
+Like what we did in question 9, I opened the PE.CSV in timeline explorer and see how many .pf file
+
+![](Images/37.png)
+
+
+Answer: `174`
+
+
+
+#### Q23: How many times was the file shredder application executed?
+
+you can also find the answer by searching for bcwipe.exe in pe.csv using timeline explorer
+
+![](Images/38.png)
+
+
+Answer: `5`
+
+
+#### Q24: Using prefetch, determine when was the last time ZENMAP.EXE-56B17C4C.pf was executed?
+
+search for the keyword above in pe.csv, too 
+
+![](Images/39.png)
+
+Answer: `06/21/2016 12:08:13 PM`
+
+
+
+#### Q25: A JAR file for an offensive traffic manipulation tool was executed. What is the absolute path of the file?
+
+I didn't find anyhting in the pe.csv, so I turn back and tried to find any .jar and I found Burpsuite in download folder
+
+
+![](Images/40.png)
+
+Answer: `C:\Users\Hunter\Downloads\Burpsuite_free_v1.7.03.jar` 
+
+
+#### Q26: The suspect employee tried to exfiltrate data by sending it as an email attachment. What is the name of the suspected attachment?
+
+turn back to the outlook data and systool 
+
+![](Images/41.png)
+
+Answer: `Pictures.7z`
+
+
+
+#### Q27: Shellbags shows that the employee created a folder to include all the data he will exfiltrate. What is the full path of that folder?
+
+shellbags info are found in these two hives `C:\Users\<---->\AppData\Local\Microsoft\Windows\userclass.dat` 
+and `C:\Users\<username>\ NTUSER.DAT` but I didn't found NTUSER.DAT in the image 
+
+so i Exported USRCLASS.DAT 
+
+![](Images/42.png)
+
+then open ShellBags explorer from EZtools
+
+![](Images/43.png)
+
+Answer: `C:\Users\Hunter\Pictures\Exfil`
+
+
+
+#### Q28: The user deleted two JPG files from the system and moved them to $Recycle-Bin. What is the file name that has the resolution of 1920x1200?
+
+the $Recycle-Bin include 2 photos but as you can see there were corupted, so I searched in the image for an original photo
+
+![](Images/44.png)
+
+
+after searching I found that with the same resolution and for the same cat 
+
+![](Images/45.png) 
+
+to provide double check, use `exiftool` to see  metadata of the photo
+
+![](Images/46.png) 
+
+Answer: `ws_Small_cute_kitty_1920x1200.jpg`
+
+
+#### Q29: Provide the name of the directory where information about jump lists items (created automatically by the system) is stored?
+
+Windows jump lists: show us the recently opened files in that application.
+
+it can be found in two places
+`C:\Users\<username>\AppData\Roaming\Microsoft\Windows\Recent\ AutomaticDestinations OR customdestination`
+
+the one is created automatically by the system is AutomaticDestinations
+
+Answer: `AutomaticDestinations`
+
+
+#### Q30: Using JUMP LIST analysis, provide the full path of the application with the AppID of "aa28770954eaeaaa" used to bypass network security monitoring controls. 
+
+export  AutomaticDestinations and analyze it using `JLECmd.exe` from EZtools
+
+![](Images/47.png) 
+
+![](Images/48.png) 
+
+open the csv file using timeline Explorer and search for aa28770954eaeaaa 
+
+after searching I found nothing, so I turned back and exported customdestination 
+and used the same command `JLECmd.exe -d CustomDestinations --csv <folder to save in> --csvf <file name>`,
+then open the out file using timeline explorer and searched for aa28770954eaeaaa 
+
+![](Images/49.png) 
+
+Answer: `C:\Users\Hunter\Desktop\Tor Browser\Browser\firefox.exe`
+
+
+
+# The end. I hope this has been helpful to you.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
