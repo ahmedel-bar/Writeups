@@ -1,4 +1,5 @@
-<img width="1919" height="270" alt="image" src="https://github.com/user-attachments/assets/c9898a25-5837-4482-8003-70f13a4ec3fe" /><img width="1031" height="192" alt="image" src="https://github.com/user-attachments/assets/0086cd8e-58bc-47ff-ab5e-b84d1d729ad4" /># Hunter lab wrtieup 
+# Hunter lab wrtieup 
+Lab link [Hunter](https://cyberdefenders.org/blueteam-ctf-challenges/hunter/)
 ## Category : Endpoint Forensics 
 ## Tools : 
 - Useful cheat sheet ![](Images/windowsFOR.pdf) 
@@ -400,8 +401,6 @@ Answer: `C:\Users\Hunter\Desktop\Tor Browser\Browser\firefox.exe`
 
 # The end. I hope this has been helpful to you.
 
-
-.
 
 
 
