@@ -1,4 +1,4 @@
-# Hunter lab wrtieup 
+<img width="1031" height="192" alt="image" src="https://github.com/user-attachments/assets/0086cd8e-58bc-47ff-ab5e-b84d1d729ad4" /># Hunter lab wrtieup 
 ## Category : Endpoint Forensics 
 ## Tools : 
 - AccessData_FTK_Imager
@@ -97,6 +97,154 @@ then add it to registery explorer
 ![](Images/13.png) 
 
 Answer: `3`
+
+
+#### Q8: When was the last login time for the discovered account? Format: one-space between date and time
+
+the answer in the photo above 
+
+Answer: `2016-06-21 01:42`
+
+
+#### Q9: There was a “Network Scanner” running on this computer, what was it? And when was the last time the suspect used it? Format: program.exe,YYYY-MM-DD HH:MM:SS UTC 
+
+by get deeper in image on FTK_imager i found this 
+
+![](Images/14.png) 
+
+as you already know zenmap is a network scanner tool 
+now we need to know the last time it's used
+the files provide it is `prefetchfiles` 
+you can found this folder in this path `root\windows\prefetch`
+we need now to export the whole folder 
+
+![](Images/15.png) 
+
+after that we need to analyze this folder 
+we can analyze it using `PECmd.exe` from EZtools 
+
+![](Images/16.png) 
+
+open the CSV file using `timelineexplorer` from EZtools and search for zenmap 
+
+![](Images/17.png) 
+
+Answer: `zenmap.exe,2016-06-21 12:08:13 UTC`
+
+
+#### Q10: When did the port scan end? (Example: Sat Jan 23 hh:mm:ss 2016)
+
+export this file to know info about last scan 
+
+![](Images/18.png) 
+
+![](Images/19.png) 
+
+go to this path and export this file 
+
+![](Images/20.png) 
+
+I tried to open it with browser but it didin't open, so I opened it with vscode you can open it with any text editor 
+
+![](Images/21.png) 
+
+Answer: `Tue Jun 21 05:12:09 2016`
+
+
+#### Q11: How many ports were scanned?
+
+![](Images/22.png) 
+
+Answer: `1000`
+
+
+#### Q12: What ports were found "open"?(comma-separated, ascending)
+
+![](Images/23.png) 
+
+Answer: `22,80,9929,31337` 
+
+
+#### Q13: What was the version of the network scanner running on this computer?
+
+![](Images/24.png) 
+
+Answer: `7.12`
+
+
+#### Q14: The employee engaged in a Skype conversation with someone. What is the skype username of the other party? 
+
+SKYPE data are in this path `C:\Users\<Username>\AppData\Roaming\Skype\` 
+open this path and export the `main.db` file
+
+![](Images/25.png) 
+
+then open the main.db using `skyperious`
+
+![](Images/26.png) 
+
+Answer: `linux-rul3z`
+
+
+#### Q15: What is the name of the application both parties agreed to use to exfiltrate data and provide remote access for the external attacker in their Skype conversation?
+
+in the photo above you can find the answer 
+
+Answer: `Teamviewer`
+
+
+#### Q16: What is the Gmail email address of the suspect employee?
+
+emails are sended by outlook and you can find outlook data in this path
+`C:\Users\<Username>\AppData\Local\Microsoft\Outlook\`
+
+I searched in this path and found nothing, so I tried to search in other palces and found this under the document folder 
+
+![](Images/27.png) 
+
+go ahead and open this file using `SysTools Outlook PST Viewer`
+
+![](Images/28.png)  
+
+Answer: `ehptmsgs@gmail.com`
+
+
+#### Q17: It looks like the suspect user deleted an important diagram after his conversation with the external attacker. What is the file name of the deleted diagram?
+
+![](Images/29.png)  
+
+Answer: `home-network-design-networking-for-a-single-family-home-case-house-arkko-1433-x-792.jpg`
+
+
+#### Q18: The user Documents' directory contained a PDF file discussing data exfiltration techniques. What is the name of the file?
+
+in the documnet folder you will see more than .pdf file, so you need to export all of them and see the content 
+
+![](Images/30.png)  
+
+If you open `Ryan_VanAntwerp_thesis.pdf`, you will find that 
+
+![](Images/31.png)  
+
+Answer: `Ryan_VanAntwerp_thesis.pdf`
+
+
+
+#### Q19: What was the name of the Disk Encryption application Installed on the victim system? (two words space separated)
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
 
 
 
