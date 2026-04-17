@@ -1,8 +1,8 @@
 # Hunter lab wrtieup 
 Lab link [Hunter](https://cyberdefenders.org/blueteam-ctf-challenges/hunter/)
-## Category : Endpoint Forensics 
+## Category : Endpoint Forensics
 ## Tools : 
-- Useful cheat sheet ![](Images/windowsFOR.pdf) 
+- Useful cheat sheet ![Windows FOR heat sheet](Images/windowsFOR.pdf) 
 - AccessData_FTK_Imager
 - reistery explorer
 - timeline explorer
