@@ -21,7 +21,7 @@ after that, open the image file using FTK_image
 
  ![FTK](Images/1.png)
  
-#### Q1: What is the MD5 hash of the potentially malicious EXE file the user downloaded? 
+ Q1: What is the MD5 hash of the potentially malicious EXE file the user downloaded? 
   open the image on FTK_Imager and go to the Download folder, you will find only one .exe file
   export hash list 
 
@@ -38,7 +38,7 @@ after that, open the image file using FTK_image
 
 
 
-#### Q2: What is the URL from which the file was downloaded?
+### Q2: What is the URL from which the file was downloaded?
  
  open the file .exe itself, you will find Zone.Identifier file export it and see its content 
 
@@ -53,7 +53,7 @@ after that, open the image file using FTK_image
 
 
 
-#### Q3: What application did the user use to download this file?
+### Q3: What application did the user use to download this file?
 
  you need to search in all browsers history to see which one used to download these files 
 
@@ -79,7 +79,7 @@ after that, open the image file using FTK_image
 
 
 
-#### Q4: By examining Windows Mail artifacts, we found an email address mentioning three IP addresses of servers that are at risk or compromised. What are the IP addresses?
+### Q4: By examining Windows Mail artifacts, we found an email address mentioning three IP addresses of servers that are at risk or compromised. What are the IP addresses?
 
 open link in the lab 
     
@@ -108,7 +108,7 @@ open this file unsing `HxD` and press CTRL+F to search for `ip`
 
    
 
-#### Q5: By examining the malicious executable, we found that it uses an obfuscated PowerShell script to decrypt specific files. What predefined password does the script use for encryption?
+### Q5: By examining the malicious executable, we found that it uses an obfuscated PowerShell script to decrypt specific files. What predefined password does the script use for encryption?
  
 extract the .exe file from Q1 then user a strings tool to extract all strings in it. 
 
@@ -130,7 +130,7 @@ Answer: `Imf!nfo#2025Sec$`
 
 
 
-#### Q6: After identifying how the script works, decrypt the files and submit the secret string.
+### Q6: After identifying how the script works, decrypt the files and submit the secret string.
 
 from the same script above you can find that the secret files is located in `"C:\\Users\\ethan\\Desktop\\IMF-Secret.pdf"`
 
