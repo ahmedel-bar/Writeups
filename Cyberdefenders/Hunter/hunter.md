@@ -24,7 +24,7 @@ It all began when the user asked for a salary raise that was rejected. After tha
 Your objective as a soc analyst is to analyze the image and to either confirm or deny this theory.
 
 
-### Firstly, open FTK_Imager then select image file, after that select the image itself 
+### Firstly, unzip the lab file then open FTK_Imager then select image file, after that select the image itself 
 
 ![](Images/1.png) 
 
