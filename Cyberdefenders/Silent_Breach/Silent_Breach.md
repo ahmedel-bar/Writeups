@@ -35,6 +35,9 @@ after that, open the image file using FTK_image
   
 
 
+
+
+
 #### Q2: What is the URL from which the file was downloaded?
  
  open the file .exe itself, you will find Zone.Identifier file export it and see its content 
@@ -44,6 +47,10 @@ after that, open the image file using FTK_image
  ![](Images/5.png)
  
  Answer: `http://192.168.16.128:8000/IMF-Info.pdf.exe`
+
+
+
+
 
 
 #### Q3: What application did the user use to download this file?
@@ -67,6 +74,7 @@ after that, open the image file using FTK_image
   ![](Images/7.png)
 
   Answer: `Microsoft Edge`
+
 
 
 
@@ -96,6 +104,7 @@ open this file unsing `HxD` and press CTRL+F to search for `ip`
   Answer: `145.67.29.88, 212.33.10.112, 192.168.16.128`
 
    
+
 
    
 
