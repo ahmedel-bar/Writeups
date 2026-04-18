@@ -143,7 +143,8 @@ go ahead and export this file from its location in FTK
 as you can see in the photo above the files are encrypted with the .ps1 script
 so, I asked chatgpt to give me a script to decrypt with the same algorthim 
 
-``` $password = "Imf!nfo#2025Sec$"
+```
+$password = "Imf!nfo#2025Sec$"
 $salt = [Byte[]](0x01,0x02,0x03,0x04,0x05,0x06,0x07,0x08)
 $iterations = 10000
 $keySize = 32
@@ -196,7 +197,8 @@ foreach ($encFile in $inputFiles) {
     catch {
         Write-Error "Failed to decrypt $encFile. Error: $_"
     }
-} ```
+}
+```
 
 remeber to change this 
 `$inputFiles = @(
