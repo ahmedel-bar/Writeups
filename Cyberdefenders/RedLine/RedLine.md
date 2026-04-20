@@ -16,7 +16,7 @@ As a member of the Security Blue team, your assignment is to analyze a memory du
 
 ### Q1: What is the name of the suspicious process?
 
-the volatility commad is ** pyhton3 vol.py -f <file.mem> plugin **
+the volatility commad is **pyhton3 vol.py -f <file.mem> plugin**
 
 
 
