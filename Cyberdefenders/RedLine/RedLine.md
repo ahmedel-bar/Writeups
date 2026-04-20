@@ -122,7 +122,7 @@ As we already know from the previous question the attacker IP was `77.91.124.20`
 
 so you can run `Strings` on the .mem file and grep for the suspiciouse IP 
 
-`strings /mnt/c/Users/ahmed/Downloads/labs/106-RedLine/temp_extract_dir/MemoryDump.mem | grep -i "77.91.124.20"`
+`strings 106-RedLine/temp_extract_dir/MemoryDump.mem | grep -i "77.91.124.20"`
 
 ![malfind](Images/14.png)
 
