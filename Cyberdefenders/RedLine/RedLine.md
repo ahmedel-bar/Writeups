@@ -4,7 +4,6 @@ Lab Link [RedLine](https://cyberdefenders.org/blueteam-ctf-challenges/redline/)
 ## Tools
   - Volatility
   - Strings
-  - bstrings.exe
 ## Scenario
 ```
 As a member of the Security Blue team, your assignment is to analyze a memory dump using Redline and Volatility tools.
