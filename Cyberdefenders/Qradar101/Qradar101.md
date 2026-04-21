@@ -1,4 +1,4 @@
-<img width="1919" height="835" alt="image" src="https://github.com/user-attachments/assets/ea0879b5-8bda-42d5-9eb3-820c6e801770" /># Qradar101
+# Qradar101
 lab Link [Qradar101](https://cyberdefenders.org/blueteam-ctf-challenges/qradar101/)
 ## Category : Threat Hunting
 ## Tools : 
