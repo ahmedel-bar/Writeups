@@ -122,7 +122,6 @@ Answer: `192.168.20.20`
 
 
 
-
 ### Q6: What is the attacker's IP address?
 
 ### Q7: The attacker was searching for data belonging to one of the company's projects, can you find the name of the project?
@@ -136,6 +135,24 @@ Answer: `192.168.20.20`
 
 
 ### Q11: Name of the second system the attacker targeted to cover up the employee?
+
+
+### Q12: When was the first malicious connection to the domain controller (log start time - hh:mm:ss)?
+
+
+### Q13: What is the md5 hash of the malicious file?
+
+
+### Q14: What is the MITRE persistence technique ID used by the attacker?
+
+
+### Q15: What protocol is used to perform host discovery?
+
+
+### Q16: What is the email service used by the company?(one word)
+
+
+
 
 
 
