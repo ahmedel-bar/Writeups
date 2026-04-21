@@ -123,6 +123,48 @@ Answer: `192.168.20.20`
 
 
 
+### Q6: What is the attacker's IP address?
+
+### Q7: The attacker was searching for data belonging to one of the company's projects, can you find the name of the project?
+
+### Q8: What is the IP address of the first infected machine?
+
+### Q9: What is the username of the infected employee using 192.168.10.15?
+
+
+### Q10: Hackers do not like logging, what logging was the attacker checking to see if enabled?
+
+
+### Q11: Name of the second system the attacker targeted to cover up the employee?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
