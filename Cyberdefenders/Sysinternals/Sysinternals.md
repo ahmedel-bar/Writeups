@@ -84,13 +84,77 @@ Answer: `fa1002b02fc5551e075ec44bb4ff9cc13d563dcf`
 search in  [Virus total](https://www.virustotal.com/) using hash value from previuos question
 
 as the report below
-[Virustotal](https://www.virustotal.com/gui/file/72e6d1728a546c2f3ee32c063ed09fa6ba8c46ac33b0dd2e354087c1ad26ef48)
+[VT Report](https://www.virustotal.com/gui/file/72e6d1728a546c2f3ee32c063ed09fa6ba8c46ac33b0dd2e354087c1ad26ef48)
 
 you can find that 
 
 ![vt](Images/8.png)
 
-Answer: `rozena`
+Answer: `Rozena`
+
+
+### Q5: What is the first mapped domain's Fully Qualified Domain Name (FQDN)?
+
+from the same report in the previous question and in the relation tab 
+you can see the next 
+
+![vt](Images/9.png)
+
+the domain that detected before as malicious
+
+Answer: `www.malware430.com`
+
+
+
+### Q6: The mapped domain is linked to an IP address. What is that IP address?
+
+I searched for this in virus total but found no thing 
+
+so, I turned back to search on iamge file to search in `windows host file` 
+
+which map ip with domain name 
+
+windows host file in this path : `C:\Windows\System32\drivers\etc\hosts`
+
+go ahead and export it 
+
+![vt](Images/15.png)
+
+then open it with any text editor, you can find the next 
+
+![vt](Images/16.png)
+
+
+Answer: `192.168.15.10`
+
+
+
+
+
+
+### Q7: What is the name of the executable dropped by the first-stage executable?
+Using the Virus total report above 
+
+naviagte to behavior tab
+
+![vt](Images/18.png)
+
+![vt](Images/17.png)
+
+Answer: `vmtoolsIO.exe`
+
+
+
+
+
+
+### Q8: What is the name of the service installed by 2nd-stage executable?
+
+from the same photo above you can see the answer 
+
+![vt](Images/19.png)
+
+Answer: ` VMwareIOHelperService`
 
 
 
@@ -100,6 +164,9 @@ Answer: `rozena`
 
 
 
+
+
+# The end, I hope you found this useful. 
 
 
 
