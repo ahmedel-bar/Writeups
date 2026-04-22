@@ -55,10 +55,12 @@ Answer: `suricata`
 
 ### Q3: What is the domain name used in the network?
 
-The domain name can be found by filtering Event ID 4624
-which related to sucessfull login to show account information.
+What is the event ID that will be triggered if the user from the domain successfully logs in?
+
+EventID: 4624 *sucessful login*
 
 but first you need to chance time range to include all events 
+choose any old time because the logs start in 2020  
 
 ![instractions](Images/5.png)
 
@@ -95,6 +97,7 @@ Answer: `192.168.20.20`
 
 
 ### Q5: What is the SID of the most frequent alert rule in the dataset?
+every signature rule in IPS/IDS has SID
 
 we need to group by `RULE SID` as below
 
