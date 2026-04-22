@@ -1,5 +1,6 @@
-<img width="1916" height="540" alt="image" src="https://github.com/user-attachments/assets/bc810ac5-ee94-4b6c-9d66-af86b0c86704" /># Sysinternals lab writeup 
+# Sysinternals lab writeup 
 lab link [Sysinternals](https://cyberdefenders.org/blueteam-ctf-challenges/sysinternals/)
+## Category : Endpoint Forensics
 ## Scenario
 ```
 A user thought they were downloading the SysInternals tool suite and attempted to open it,
