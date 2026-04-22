@@ -8,13 +8,13 @@ but the tools did not launch and became inaccessible. Since then,
 the user has observed that their system has gradually slowed down and become less responsive.
 ```
 ## Tools 
-  - Autopsy
   - FTK imager
   - registry explorer
   - timeline explorer
   - amchaceparser.exe
   - virus total
-  - 
+  - notebook.exe
+    
 
 first you need to extract lab file using any uncompression tool like winrar using password `cyberdefenders.org`
 then open the image file in FTK_Imager 
