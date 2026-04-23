@@ -270,31 +270,76 @@ so, we need to show connections from 192.168.10.15 to DC after this date
 
 by the way, the machine that has `192.168.10.15` is `HD-FIN-03`
 
+![instractions](Images/29.png)
 
 and the DC ip is `192.168.20.20`
 ![instractions](Images/30.png)
 
+now, we need to filter event name as a `network connection detected` and source ip = `192.168.10.15`
+
+when filter dest ip as `192.168.20.20` 
+I found nothing related to network connection, so  I changed it to `payload contains 192.168.20.20`
+to search if the connection was established by any tool
+
+![instractions](Images/31.png)
+
+by investigate more in this log
+
+you can see notebook.exe started a network connection which is a malicious behaviour 
+
+![instractions](Images/32.png)
 
 
 
 
-Answer: ``
+
+Answer: `11:14:10`
+
+
+
 
 ### Q13: What is the md5 hash of the malicious file?
+we need to search for sysmon event id = 15 : file create stream hash
+
+![instractions](Images/33.png)
+
+click on that event to see more info 
+
+![instractions](Images/34.png)
 
 
 
-
-
-Answer: ``
+Answer: `9D08221599FCD9D35D11F9CBD6A0DEA3`
 
 
 ### Q14: What is the MITRE persistence technique ID used by the attacker?
 
+we need to know which persistance technique that used by hacker 
+most common persistence techniques 
+    registry [Run, Runonce]
+    schedular tasks : eventid = 4698 : scheduled task created
+    startup folders
+
+I started with registry 
+ filter by using EventID = 13 : registry vlaue set 
+ and payload contain Run or RunOnce to check persistance
+ Run & RunOnce : used to execute programs automatically when a user logs on
+
+![instractions](Images/35.png)
+
+showing raw event 
+
+![instractions](Images/36.png)
+
+to know  MITRE persistence technique ID go to [MITRE](https://attack.mitre.org/)
+then from tactics choose persistence 
+
+![instractions](Images/37.png)
+
+ 
 
 
-
-Answer: ``
+Answer: `T1547.001`
 
 
 ### Q15: What protocol is used to perform host discovery?
