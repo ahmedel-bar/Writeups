@@ -344,23 +344,56 @@ Answer: `T1547.001`
 
 ### Q15: What protocol is used to perform host discovery?
 
+Since the initial access was via IP address `192.168.10.15`, and there was a connection from this device to the DC, 
+it is inevitable that the attacker would discover the network using IP address `192.168.10.15`.
+so I user this filter and also filtered the time from the initial access to `192.168.101.15`
+to the maliciouse connection to `DC`
+
+![instractions](Images/38.png)
+
+then, I excluded 192.168.10.15 as a desitnation ip to reduce the output
+
+![instractions](Images/39.png)
+
+This procedure looks like a scan (ping swap) from the same source port to an entire subnet.
+
+by analyzing the raw log you can find that 
+
+![instractions](Images/40.png)
 
 
 
-Answer: ``
+Answer: `icmp`
 
 
 ### Q16: What is the email service used by the company?(one word)
 
+Firstly, I filtered by `desp port [25]` which related to SMTP but found nothing
+
+then, filtered only by external ip 
+
+then, i excluded dest port `53` becuase it's related to DNS 
+and exclude also `loop back ip` to decrease reuslts
+
+I found that result 
+
+![instractions](Images/41.png)
+
+after that, I checked every ip in WHOIS then exclude to reduce the outpu
+
+then I found this dest-ip `13.107.51.254`
+which is related to Microsofr 
 
 
-Answer: ``
+
+Answer: `office365`
 
 ### Q17: What is the name of the malicious file used for the initial infection?
 
+from the `Q13` we can see the first file used for initial acccess
 
 
-Answer: ``
+Answer: `important_instructions.docx`
 
 
 ### Q18: What is the name of the new account added by the attacker?
