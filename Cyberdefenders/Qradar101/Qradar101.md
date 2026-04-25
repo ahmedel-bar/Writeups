@@ -397,45 +397,99 @@ Answer: `important_instructions.docx`
 
 
 ### Q18: What is the name of the new account added by the attacker?
+filter by `eventid = 4720 : create new user`
 
 
-Answer: ``
+![instractions](Images/42.png)
+
+
+Answer: `rambo`
+
+
 
 
 ### Q19: What is the PID of the process that performed injection?
+you need to filter using `EventID=8 : create remote thread (process injection)`
+
+![instractions](Images/43.png)
+
+the photo down observe that this process is malicious becuase it's related to notebook.exe
+
+![instractions](Images/44.png)
 
 
-Answer: ``
+Answer: `7384`
+
+
+
 
 ### Q20: What is the name of the tool used for lateral movement?
 
+as we already saw in the questions above 
+the attacker take an initial access on FIN-03 
+then applied ping scan to discover the network 
 
-Answer: ``
+now, we need to see commands running on the machine after scanning
+
+as we also know, the first letral movement was to `DC`
+
+![instractions](Images/45.png)
+
+by searching for this command we found that 
+
+![instractions](Images/46.png)
+
+![instractions](Images/47.png)
+
+
+Answer: `wmiexec.py`
 
 
 ### Q21: Attacker exfiltrated one file, what is the name of the tool used for exfiltration?
 
+using the same command above we can observe that
 
-Answer: ``
+![instractions](Images/48.png)
+
+Answer: `curl`
+
+
+
 
 
 ### Q22: Who is the other legitimate domain admin other than the administrator?
 
+filter using `EventID =4672 : special privileges assigned to new logon`
 
-Answer: ``
+![instractions](Images/49.png)
+
+
+Answer: `Adam`
+
+
+
+
 
 ### Q23: The attacker used the host discovery technique to know how many hosts available in a certain network, what is the network the hacker scanned from the host IP 1 to 30?
 
-Answer: ``
+as we did in the question `Q 15`
+
+![instractions](Images/50.png)
+
+
+Answer: `192.168.20.0`
+
+
 
 
 ### Q24: What is the name of the employee who hired the attacker?
 
+as we saw in commands, the attacker upload `sami.xlsx` and then delete it from two machines
+
+Answer: `sami`
 
 
-Answer: ``
-
-
+# The end. I hope this has been helpful to you.
 
 
 
