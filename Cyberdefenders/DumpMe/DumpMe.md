@@ -10,7 +10,9 @@ extract the available indicators of compromise (IOCs) and answer the provided qu
 ```
 
 ## Tools
-  - Volatility-2 
+  - Volatility-2
+  - Volatility-3
+  - strings
 
 
 
