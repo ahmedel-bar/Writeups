@@ -1,7 +1,7 @@
 # Splunk 3 aka Boss of the SOC writeup 
 ### lab Link [Splunk 3](https://tryhackme.com/room/splunk3zs)
 
-# TASK 3
+# TASK 3 : AWS & other events
 
 ### Q1: List out the IAM users that accessed an AWS service (successfully or unsuccessfully) in Frothly's AWS environment? Answer guidance: Comma separated without spaces, in alphabetical order. (Example: ajackson,mjones,tmiller)
 
@@ -97,7 +97,7 @@ Answer: `frothlywebcode`
 
 
 
-### Q7: What is the name of the text file that was successfully uploaded into the S3 bucket while it was publicly accessible? Answer guidance: Provide just the file name and extension, not the full path. (Example: filename.docx instead of /mylogs/web/filename.docx)
+### Q7: What is the name of the text file that was successfully uploaded into the S3 bucket while it was publicly accessible?Answer guidance: Provide just the file name and extension, not the full path. (Example: filename.docx instead of /mylogs/web/filename.docx)
 
 in source type I found that there was one related to `s3`
 
@@ -117,9 +117,52 @@ Answer: `OPEN_BUCKET_PLEASE_FIX.txt`
 
 ### Q8: What is the FQDN of the endpoint that is running a different Windows operating system edition than the others?
 
-Firstly, I 
+Firstly, I print all souretypes to see which of them are related to windows log and I found that
+
+![cm](Images/14.png)
+
 `winhostmon is a data source that collects monitoring information from Windows hosts, such as processes, services, and system activity.`
 
+so I filtered using
+  - index="botsv3" sourcetype="winhostmon" OS
+
+then press all fields and search for OS 
+
+![cm](Images/15.png)
+
+as you can see the `Microsoft Windows 10 Enterprise` is less used
+
+so I filtered using it to see more info
+  - index="botsv3" sourcetype="winhostmon" "Microsoft Windows 10 Enterprise"
+
+I found computer name 
+
+![cm](Images/16.png)
+
+```
+FQDN = computername + domain
+     = BSTOLL-L + froth.ly
+we already know domain from Splunk 2 lab
+```
+
+or we can search by `BSTOLL-L` to see the FQDN
+
+![cm](Images/17.png)
+
+Answer: `BSTOLL-L.froth.ly`
+
+
+
+
+# Task 4 : Cryptomining events
+
+### Q1: A Frothly endpoint exhibits signs of coin mining activity. What is the name of the second process to reach 100 percent CPU processor utilization time from this activity on this endpoint? Answer guidance: Include any special characters/punctuation.
+
+do any general query and search for CPU to see which field contains cpu percentage usage
+
+![cm](Images/18.png)
+
+then filter by it = 100 and list it and its name 
 
 
 
@@ -132,6 +175,90 @@ Firstly, I
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## The End 
+# I hope you find it useful.
 
 
 
