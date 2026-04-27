@@ -163,12 +163,66 @@ do any general query and search for CPU to see which field contains cpu percenta
 ![cm](Images/18.png)
 
 then filter by it = 100 and list it and its name 
+ - index="botsv3" process_cpu_used_percent = 100 | top process_name process_cpu_used_percent
+
+![cm](Images/19.png)
+
+Answer: `chrome#5`
 
 
 
 
+### Q2: What is the short hostname of the only Frothly endpoint to actually mine Monero cryptocurrency? (Example: ahamilton instead of ahamilton.mycompany.com)
+
+as you can see in the image above 
+the process chrome#4 run about 129 which seemed suspicious so I filtered using it 
+  - index="botsv3" process_cpu_used_percent = 100 chrome#4
+
+![cm](Images/20.png)
+
+Answer: `BSTOLL-L`
 
 
+### Q3: Using Splunk's event order functions, what is the first seen signature ID of the coin miner threat according to Frothly's Symantec Endpoint Protection (SEP) data?
+
+use sourcetype = symantec:ep:security:file which related to antivirus, EDR, security 
+ -index="botsv3" sourcetype="symantec:ep:security:file" | table CIDS_Signature_ID _time
+
+![cm](Images/21.png)
+
+Answer: `30358`
+
+
+
+### Q4: What is the name of the attack?
+
+using the same filter
+
+![cm](Images/22.png)
+
+Answer: `JSCoinminer Download 8`
+
+
+
+### Q5: According to Symantec's website, what is the severity of this specific coin miner threat?
+
+search for `JSCoinminer Download 8 severity levels`
+
+![cm](Images/23.png)
+
+Answer: `Medium`
+
+
+
+### Q6: What is the short hostname of the only Frothly endpoint to show evidence of defeating the cryptocurrency threat? (Example: ahamilton instead of ahamilton.mycompany.com)
+
+using the same filter above which related to AV & EDR & Security 
+
+you will find only one hostname
+
+![cm](Images/24.png)
+
+Answer: `BTUN-L`
 
 
 
