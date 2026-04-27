@@ -1,4 +1,4 @@
-# Splunk 2 aka Boss of the SOC
+# Splunk 2 aka Boss of the SOC writeup 
 ### lab Link [Splunk 2](https://tryhackme.com/room/splunk2gcd5)
 # 100 series questions
 ## scenario 
