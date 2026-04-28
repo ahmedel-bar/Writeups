@@ -441,6 +441,10 @@ to see the hash click view event
 Answer: `586ef56f4d8963dd546163ac31c865d7`
 
 
+
+# Task 7 : More endpoint events
+
+
 ..
 
 
