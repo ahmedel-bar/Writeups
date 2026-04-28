@@ -270,6 +270,8 @@ to find the commited access keys
 
 ![cm](Images/32.png)
 
+
+don't forget to remove the *
 Answer: `Bx8/gTsYC98T0oWiFhpmdROqh*ELPtXJSR9vFPNGk`
 
 
@@ -366,6 +368,16 @@ Answer: `ilovedavidverve`
 
 
 ### Q5: What is the name of the user that was created after the endpoint was compromised?
+
+I went back to the machine where the malicious macro was executed, and I found that it was a Windows machine. 
+
+![cm](Images/42.png)
+
+So, I searched for `EventID=4720`, which indicates that a user account was created.
+
+- index="botsv3" EventCode = 4720
+
+![cm](Images/43.png)
 
 Answer: `svcvnc`
 
