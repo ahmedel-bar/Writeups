@@ -388,7 +388,18 @@ Answer: `svcvnc`
 
 ### Q6: Based on the previous question, what groups was this user assigned to after the endpoint was compromised? Answer guidance: Comma separated without spaces, in alphabetical order.
 
-Answer: ``
+filter using `EventID= 4732 ` user added to local group 
+
+  - index="botsv3" EventCode=4732
+
+![cm](Images/44.png)
+
+![cm](Images/45.png)
+
+
+
+
+Answer: `administrators,user`
 
 
 
@@ -396,8 +407,16 @@ Answer: ``
 
 ### Q7: What is the process ID of the process listening on a "leet" port?
 
+LEET port is on 1337 : This port may be used by attackers to establish a reverse shell or maintain a backdoor.
+![cm](Images/4-6.png)
 
-Answer: ``
+so I filtered using
+  - index="botsv3"  dest_port=1337 | stats count by pid
+
+
+![cm](Images/46.png)
+
+Answer: `14356`
 
 
 
@@ -405,7 +424,21 @@ Answer: ``
 
 ### Q8: What is the MD5 value of the file downloaded to Fyodor's endpoint system and used to scan Frothly's network?
 
-Answer: ``
+for this you can use this sysmon `EventID 1 : process creation`
+
+  - index="botsv3" Computer="FYODOR-L.froth.ly"  EventCode = 1 md5 | stats count by cmdline
+
+![cm](Images/47.png)
+
+this process is used to scan network from 192.168.9.1-192.168.9.50 
+
+to see the hash click view event 
+
+![cm](Images/48.png)
+
+
+
+Answer: `586ef56f4d8963dd546163ac31c865d7`
 
 
 ..
