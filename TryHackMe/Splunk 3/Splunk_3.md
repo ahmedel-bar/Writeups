@@ -226,6 +226,184 @@ Answer: `BTUN-L`
 
 
 
+# Task 5 : More AWS events
+
+### Q1: What IAM user access key generates the most distinct errors when attempting to access IAM resources?
+first, I query all events under `sourcetype = aws*` then search in fileds for accesskey
+
+![cm](Images/25.png)
+
+then search for errors
+
+![cm](Images/26.png)
+
+then from this resource [AWS](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-event-reference-record-contents.html)
+
+I found that 
+![cm](Images/27.png)
+
+ - index="botsv3"  sourcetype = aws* errorCode=accessdenied | stats count by userIdentity.accessKeyId
+
+![cm](Images/28.png)
+
+Answer: `AKIAJOGCDXJ5NW5PXUPA`
+
+
+
+### Q2: Bud accidentally commits AWS access keys to an external code repository. Shortly after, he receives a notification from AWS that the account had been compromised. What is the support case ID that Amazon opens on his behalf?
+
+using the hint 
+![cm](Images/29.png)
+
+using this query 
+  - index="botsv3" sourcetype="stream:smtp" "access keys"
+
+![cm](Images/30.png)
+
+
+### Q3: AWS access keys consist of two parts: an access key ID (e.g., AKIAIOSFODNN7EXAMPLE) and a secret access key (e.g., wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY). What is the secret access key of the key that was leaked to the external code repository?
+
+becuase the `Bud accidentally commits AWS access keys to an external code repository` I searched for this repo in the event from previous question 
+to find the commited access keys 
+
+![cm](Images/31.png)
+
+![cm](Images/32.png)
+
+Answer: `Bx8/gTsYC98T0oWiFhpmdROqh*ELPtXJSR9vFPNGk`
+
+
+
+
+### Q4: Using the leaked key, the adversary makes an unauthorized attempt to create a key for a specific resource. What is the name of that resource? Answer guidance: One word.
+
+searching by `aws_acccess_key_id` in the repo 
+
+![cm](Images/33.png)
+
+then expand on the query using eventname= create access key 
+  - index="botsv3" AKIAJOGCDXJ5NW5PXUPA eventName=CreateAccessKey
+
+![cm](Images/34.png)
+
+Answer: `nullweb_admin`
+
+
+
+### Q5: Using the leaked key, the adversary makes an unauthorized attempt to describe an account. What is the full user agent string of the application that originated the request?
+
+as we did in the previous question 
+
+![cm](Images/35.png)
+
+- index="botsv3" AKIAJOGCDXJ5NW5PXUPA eventName=DescribeAccountAttributes
+
+![cm](Images/36.png)
+
+
+Answer: `	ElasticWolf/5.1.6`
+
+
+
+# Task 6 : Pivoting back to endpoint events
+
+### Q1: What is the full user agent string that uploaded the malicious link file to OneDrive?
+
+I started free search with `OneDrive` 
+then, I expanded on the query using sourcetype related to office365 which related to OneDrive 
+ - index="botsv3" sourcetype="ms:o365:management" OR sourcetype="o365:management:activity" | stats count by UserAgent
+
+![cm](Images/37.png)
+
+by searching for `NaenaraBrowser` it turned out that it's a browser related to `north korean`
+
+![cm](Images/38.png)
+
+Answer: `Mozilla/5.0 (X11; U; Linux i686; ko-KP; rv: 19.1br) Gecko/20130508 Fedora/1.9.1-2.5.rs3.0 NaenaraBrowser/3.5b4`
+
+
+### Q2: What was the name of the macro-enabled attachment identified as malware?
+as we know file extensions are associated with macro-enabled are `xlsm, docm, pptm`
+so, I tried to seacrh for them 
+
+  - index="botsv3" (docm OR pptm OR xlsm) | stats count by TargetFilename
+
+![cm](Images/40.png)
+
+investiagte more in both
+
+![cm](Images/39.png)
+
+The process `HxTsr.exe` is part of the Windows Mail app, which means the malicious macro file was downloaded from an email.
+
+Answer: `Frothly-Brewery-Financial-Planning-FY2019-Draft.xlsm`
+
+
+
+
+### Q3: What is the name of the executable that was embedded in the malware? Answer guidance: Include the file extension. (Example: explorer.exe)
+
+from the previous question you can find the answer
+
+Answer: `HxTsr.exe`
+
+
+
+
+
+### Q4: What is the password for the user that was successfully created by the user "root" on the on-premises Linux system?
+
+to add a user in linux you need to use this command `useradd`
+
+so, I searched by it and also search using root 
+  - index="botsv3" useradd root
+
+![cm](Images/41.png)
+
+
+Answer: `ilovedavidverve`
+
+
+
+### Q5: What is the name of the user that was created after the endpoint was compromised?
+
+Answer: `svcvnc`
+
+
+
+
+
+
+### Q6: Based on the previous question, what groups was this user assigned to after the endpoint was compromised? Answer guidance: Comma separated without spaces, in alphabetical order.
+
+Answer: ``
+
+
+
+
+
+### Q7: What is the process ID of the process listening on a "leet" port?
+
+
+Answer: ``
+
+
+
+
+
+### Q8: What is the MD5 value of the file downloaded to Fyodor's endpoint system and used to scan Frothly's network?
+
+Answer: ``
+
+
+..
+
+
+
+
+
+
+
 
 
 
