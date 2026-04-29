@@ -103,18 +103,61 @@ Answer: `hxxp[://]9030-181-215-214-32[.]ngrok[.]io`
 
 ### Q7: A PowerShell script was downloaded to the same location as the suspicious binary. What was the name of the file?
 
+the powershell script extension is .ps1 
+ - index = main   .ps1 | dedup TargetFilename | table TargetFilename
+
+![in](Images/11.png) 
+
+
+Answer: `script.ps1`
+
+
+
+### Q8: The malicious script was flagged as malicious. What do you think was the actual name of the malicious script?
+
+veiw the event on the pevious question 
+
+![in](Images/12.png) 
+
+search using any hash values in any threat hunting platforms
+like [Virus Total](https://www.virustotal.com/)
+
+ ![in](Images/13.png) 
+
+Answer: `BlackSun.ps1`
+
+
+### Q9: A ransomware note was saved to disk, which can serve as an IOC. What is the full path to which the ransom note was saved?
+
+Notes are commonly saved as .txt 
+
+so, I searched using .txt and the text create by powershell.exe
+
+- index = main powershell.exe .txt
+
+ ![in](Images/14.png) 
+
+Answer: `C:\Users\keegan\Downloads\vasg6b0wmw029hd\BlackSun_README.txt`
 
 
 
 
+### Q10: The script saved an image file to disk to replace the user's desktop wallpaper, which can also serve as an IOC. What is the full path of the image?
+
+image files commonly saved as .png OR .jpg
+and the powershell.exe 
+
+- index = main  powershell.exe .png OR .jpg
+
+ ![in](Images/15.png) 
+
+Answer: `C:\Users\Public\Pictures\blacksun.jpg`
 
 
 
 
-
-
-
-
+## The End 
+# I hope you find it useful.
 
 
 
