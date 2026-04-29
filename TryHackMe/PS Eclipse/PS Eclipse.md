@@ -68,6 +68,48 @@ Answer: `"C:\Windows\system32\schtasks.exe" /Create /TN OUTSTANDING_GUTTER.exe /
 
 
 
+### Q5: What permissions will the suspicious binary run as? What was the command to run the binary with elevated privileges? (Format: User + ; + CommandLine)
+
+Using the same command above, you can see the task execution 
+
+![in](Images/7.png)
+
+Now, need to know the full name of the system
+
+- index = main  keegan
+
+![in](Images/8.png)
+
+
+Answer: `NT AUTHORITY\SYSTEM;"C:\Windows\system32\schtasks.exe" /Run /TN OUTSTANDING_GUTTER.exe`
+
+
+### Q6: The suspicious binary connected to a remote server. What address did it connect to? Add http:// to your answer & defang the URL.
+
+include *OUTSTANDING_GUTTER.exe* in your search
+- index = main   OUTSTANDING_GUTTER.exe
+
+![in](Images/9.png) 
+
+add http to the uri and defang using cyber chef 
+
+![in](Images/10.png) 
+
+
+Answer: `hxxp[://]9030-181-215-214-32[.]ngrok[.]io`
+
+
+
+
+### Q7: A PowerShell script was downloaded to the same location as the suspicious binary. What was the name of the file?
+
+
+
+
+
+
+
+
 
 
 
