@@ -2,7 +2,6 @@
 ### lab Link [Splunk 3](https://tryhackme.com/room/splunk3zs)
 
 # TASK 3 : AWS & other events
-
 ### Q1: List out the IAM users that accessed an AWS service (successfully or unsuccessfully) in Frothly's AWS environment? Answer guidance: Comma separated without spaces, in alphabetical order. (Example: ajackson,mjones,tmiller)
 
 firstly, I used the command givent in the task 2 to list all sourcetype available
@@ -444,94 +443,111 @@ Answer: `586ef56f4d8963dd546163ac31c865d7`
 
 # Task 7 : More endpoint events
 
+### Q1: What port number did the adversary use to download their attack tools?
 
-..
+as we know the malicious activity has occurred on Fyodor's endpoint.
+So, need to start your search with his host
+  - index="botsv3"  Computer="FYODOR-L.froth.ly"
 
+then to see all destnation ports I used this 
+  - index="botsv3"  Computer="FYODOR-L.froth.ly" | dedup DestinationPort |table DestinationPort
 
+![cm](Images/49.png)
 
+All protocols are known by their services, except port 3333.
 
+Therefore, I reviewed it for further investigation.
 
+![cm](Images/50.png)
 
+a network connection was established using powershell.exe on a unknown port 
 
 
 
+Answer: `3333`
 
+### Q2: Based on the information gathered for question 1, what file can be inferred to contain the attack tools? Answer guidance: Include the file extension.
 
+use the dest_port from the previous question to show what files are donwlaod
+ - index="botsv3"   dest_port=3333
 
+![cm](Images/51.png)
+ 
+Answer: `logos.png`
 
 
 
+### Q3: During the attack, two files are remotely streamed to the /tmp directory of the on-premises Linux server by the adversary. What are the names of these files? Answer guidance: Comma separated without spaces, in alphabetical order, include the file extension where applicable.
 
 
+streamed means that it was transmitted over the network
 
+and from the Q4 in task6 the user created on linux is tomcats 
 
+- index="botsv3"   /tmp/*.*   tomcat8 | dedup columns.target_path | table columns.target_path
 
+![cm](Images/52.png)
 
 
+Answer: `colonel.c,definitelydontinvestigatethisfile.sh`
 
 
 
+### Q4: The Taedonggang adversary sent Grace Hoppy an email bragging about the successful exfiltration of customer data. How many Frothly customer emails were exposed or revealed?
 
+SMTP is a simple mail transfer protocol so, I used this query 
+- index="botsv3" sourcetype="stream:smtp"   "Grace Hoppy"
 
+![cm](Images/53.png)
 
+but the link doesn't work 
 
+![cm](Images/54.png)
 
+Answer: `8`
 
 
 
+### Q5: What is the path of the URL being accessed by the command and control server? Answer guidance: Provide the full path. (Example: The full path for the URL https://imgur.com/a/mAqgt4S/lasd3.jpg is /a/mAqgt4S/lasd3.jpg)
 
+from Q1 in Task 7, we observed that the C2 server is 45.77.53.176.vultr.com
+and the connection was established using Powershell.exe 
+therefore, I searched using  45.77.53.176 but found nothing 
+this might because established connection using powershell and encode the command 
 
+so I filtered again using
+- index="botsv3" powershell.exe | stats count by CommandLine
+I found answer in this
 
+![cm](Images/55.png)
 
 
+then use [cyber chef](https://cyberchef.org/) 
+to decode using base64 
 
+![cm](Images/56.png)
 
+then decode this to see full url 
 
+![cm](Images/57.png)
 
+![cm](Images/58.png)
 
+the full url is *https://45.77.53.176:443/admin/get.php*
 
 
+Answer: `/admin/get.php`
 
 
+### Q6: At least two Frothly endpoints contact the adversary's command and control infrastructure. What are their short hostnames? Answer guidance: Comma separated without spaces, in alphabetical order.
 
 
+- index="botsv3" DestinationHostname="45.77.53.176.vultr.com" 
 
+![cm](Images/59.png)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Answer: `ABUNGST-L,FYODOR-L`
 
 
 
