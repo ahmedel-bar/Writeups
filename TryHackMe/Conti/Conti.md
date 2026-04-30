@@ -142,12 +142,19 @@ Answer: `attrib.exe  -r \\\\win-aoqkg2as2q7.bellybear.local\C$\Program Files\Mic
 
 ### Q10: What three CVEs did this exploit leverage? Provide the answer in ascending order.
 
+this question need to google for answer
+I found answer in this blog [Conti Ransomware](https://www.securin.io/articles/is-conti-ransomware-on-a-roll)
+
+
+![images](Images/11.png)
+
+
+Answer: `CVE-2020-0796,CVE-2018-13374, CVE-2018-13379`
 
 
 
-
-
-
+## The End 
+# I hope you find it useful.
 
 
 
