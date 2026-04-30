@@ -1,3 +1,4 @@
+.gitignore
 # Fixit Writeup
 ### Lab Link [Fixit](https://tryhackme.com/room/fixit)
 
