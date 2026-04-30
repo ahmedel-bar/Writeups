@@ -15,12 +15,48 @@ a popular self-service password management solution used by organizations.
 ```
 ### Q1: Comb through the ADSelfService Plus logs to begin retracing the attacker’s steps. At what time (ISO 8601 format) was Dean's password changed and their account taken over by the attacker?
 
-Answer: ``
+Firstly, I used this query to know which index contains data
+- | eventcount summarize=false index=*
+
+![main](Images/0.png)
+
+From this field I choosed user name = dean 
+![main](Images/1.png)
+
+then from this filed I choosed password change 
+
+![main](Images/2.png)
+
+if you can't see the field click All field then search using field name 
+the final query 
+- index = main username="dean-admin" action_name="Password Change"
+
+you will see these two events 
+
+![main](Images/3.png)
+
+choose the time of the completed action no failed 
+
+Answer: `2024-03-24T11:10:22`
 
 
 ### Q2: Shortly after Dean's account was compromised, the attacker created a new administrator account. What is the name of the new account that was created?
 
-Answer: ``
+I filtered by time after the time in Q1 
+click on the time then choose *after this time*
+
+![main](Images/4.png)
+
+then from action_name field choose Enrollment 
+
+![main](Images/5.png)
+
+you will see the answer
+
+![main](Images/6.png)
+
+
+Answer: `voltyp-admin`
 
 
 ## Task 3 : Execution
@@ -32,17 +68,31 @@ they blend in with legitimate system activity, making detection more challenging
 ```
 ### Q1: In an information gathering attempt, what command does the attacker run to find information about local drives on server01 & server02?
 
+search using this query 
+- index = main server01 server02
 
+![main](Images/7.png)
 
-Answer: ``
+Answer: `wmic /node:server01, server02 logicaldisk get caption, filesystem, freespace, size, volumename`
 
 
 
 ### Q2: The attacker uses ntdsutil to create a copy of the AD database. After moving the file to a web server, the attacker compresses the database. What password does the attacker set on the archive?
 
+first of all, I filtered by ntdsutil
+- index = main ntdsutil
+and found that
+![main](Images/8.png)
+
+the attacker create a copy of the AD database to file named *temp.dit*
+
+then I searched using *temp.dit* to see What password does the attacker set on the archive which used to compresse DB
+- index = main temp.dit
+
+![main](Images/9.png)
 
 
-Answer: ``
+Answer: `d5ag0nm@5t3r`
 
 
 ## Task 4 : Persistence
@@ -52,7 +102,26 @@ Our target APT frequently employs web shells as a persistence mechanism to maint
 
 ### Q1: To establish persistence on the compromised server, the attacker created a web shell using base64 encoded text. In which directory was the web shell placed?
 
-Answer: `` 
+for this, I went through commandlines excuted on the machine 
+- index = main | stats count by CommandLine
+
+![main](Images/10.png)
+
+The most suspicious command is echo, as the other commands appear to be for reconnaissance, 
+while attackers commonly use echo to write Base64-encoded payloads into a file.
+
+so, I clicked on view event to further investiagte 
+
+![main](Images/11.png) 
+
+the photo above clearify that the attacker save base64 in a file named *C:\Windows\Temp\ntuser.ini*
+
+to decode use [cyberchef](https://cyberchef.org/)
+
+![main](Images/12.png) 
+
+
+Answer: `C:\Windows\Temp\` 
 
 
 
