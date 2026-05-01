@@ -84,10 +84,13 @@ first of all, I filtered by ntdsutil
 and found that
 ![main](Images/8.png)
 
-the attacker create a copy of the AD database to file named *temp.dit*
+the attacker create a copy of the AD database *temp.dit* to file named *cisco-up.7z* 
 
 then I searched using *temp.dit* to see What password does the attacker set on the archive which used to compresse DB
 - index = main temp.dit
+    OR you can search using
+ - index = main cisco-up.7z
+  
 
 ![main](Images/9.png)
 
@@ -133,19 +136,51 @@ These methods encompass regular file purging, eliminating logs, and conducting t
 
 ### Q1: In an attempt to begin covering their tracks, the attackers remove evidence of the compromise. They first start by wiping RDP records. What PowerShell cmdlet does the attacker use to remove the “Most Recently Used” record?
 
-Answer: ``
+I started my filter with powershell.exe and list all commands to investigate in
+- index=main powershell.exe | stats count by CommandLine
+
+and I found those 2 command which seemed suspicious 
+![main](Images/13.png) 
+
+after investigate in each of them by click view event to show events related to this command I found that 
+
+![main](Images/14.png) 
+
+the attacker remove MRU0 : Most Recently Used 
+
+Answer: `Remove-ItemProperty`
+
+
 
 ### Q2: The APT continues to cover their tracks by renaming and changing the extension of the previously created archive. What is the file name (with extension) created by the attackers?
 
+as we observe before, the archive name is *cisco-up.7z* copied from *temp.dit*
 
+so, I searched using *cisco-up.7z* to see what commands excuted on
+- index=main cisco-up.7z
 
-Answer: ``
+![main](Images/15.png) 
+
+Answer: `cl64.gif`
 
 ### Q3: Under what regedit path does the attacker check for evidence of a virtualized environment?
+The attacker checks whether the system is a virtual machine to avoid detection, 
+as it might be an analysis environment or a sandbox.
+
+Attackers use commands like *Get-ItemProperty* or *reg query* to read registry values.
+
+so, I filtered using them 
+
+- index=main "Get-ItemProperty" OR "reg query"
+
+![main](Images/16.png) 
+
+By delving deeper, you can find that
+
+![main](Images/17.png) 
 
 
-
-Answer: ``
+Answer: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control`
 
 
 ## Task 6 : Credential Access
@@ -157,7 +192,16 @@ Additionally, they are known to access hashed credentials directly from system m
 ### Q1: Using reg query, Volt Typhoon hunts for opportunities to find useful credentials. What three pieces of software do they investigate?
 Answer Format: Alphabetical order separated by a comma and space.
 
-Answer: ``
+by filtering using *reg query* 
+- index=main  "reg query"
+you will see 8 events, by invesitage them you can find the answer
+
+![main](Images/18.png) 
+
+![main](Images/19.png) 
+
+
+Answer: `OpenSSH, putty, realvnc`
 
 ### Q2: What is the full decoded command the attacker uses to download and run mimikatz?
 
