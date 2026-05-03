@@ -62,11 +62,19 @@ now, you need to dump the file
 
 
 then go to the file location and calc file hash
-`certutil -hashfile file.None.0x85d12b18.dat md5`
+`certutil -hashfile file.None.0x85d12b18.dat sha1`
+
+94a4ef65f99c594a8bfbfbc57f369ec2b6a5cf789f91be89976086aaa507cd47
+
+search using hash value in any threathunting paltform like [Virus total](https://www.virustotal.com/)
 
 ![png](Images/6.png)
 
 Answer: `XTREMERAT`
+
+
+
+### Q4: Machine:Target1 The malware appears to be leveraging process injection. What is the PID of the process that is injected?
 
 
 
