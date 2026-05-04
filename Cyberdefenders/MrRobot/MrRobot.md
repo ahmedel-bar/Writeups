@@ -4,7 +4,7 @@
 ## Category : Endpoint Forensics
 ## Tools : 
 Volatility 
-
+[Virus Total](https://www.virustotal.com/)
 
 ## scenario 
 ```
@@ -328,27 +328,88 @@ Answer: `3`
 
 
 
+### Q20: Machine:Target2 The attacker appears to have created a scheduled task on Gideon's machine. What is the name of the file associated with the scheduled task?
+
+The filescan plugin will be used to locate files related to scheduled task activity, and search for tasks 
+because the directory *Windows\System32\Tasks* contains scheduled tasks
+
+`volatility_2.exe -f target2-6186fe9f.vmss --profile=Win7SP1x86_23418 filescan | findstr /i "Tasks"`
+
+that one looked suspicious and need more investigation 
+![png](Images/37.png)
+
+so, I dumped this file as we did in other files before 
+`volatility_2.exe -f target2-6186fe9f.vmss --profile=Win7SP1x86_23418 dumpfiles -Q 0x000000003fd05bd8 -D <dir to dump in>`
+![png](Images/38.png)
+
+to extract info from dumped file, I used strings -el and search for *gideon*
+
+![png](Images/39.png)
+
+Answer: `1.bat`
 
 
+### Q21: Machine:POS What is the malware CNC's server?
+
+for this question, I used *netscan* plugin to show all connections 
+
+`volatility_2.exe -f POS-01-c4e8f786.vmss --profile=Win7SP1x86_23418 netscan`
+
+![png](Images/40.png)
 
 
+Answer: ` 54.84.237.92`
 
 
+### Q22: Machine:POS What is the common name of the malware used to infect the POS system?
+
+first of all I used *malfind* pluign to detect malware or injected code 
+
+`volatility_2.exe -f POS-01-c4e8f786.vmss --profile=Win7SP1x86_23418 malfind`
+
+![png](Images/41.png)
+
+then, I dumped this data for more investigation 
+
+`volatility_2.exe -f POS-01-c4e8f786.vmss --profile=Win7SP1x86_23418 malfind -p 3208 -D <dir to dump in>`
+
+then extract the file hash using 
+`certutil -hashfile process.0x83f324d8.0x50000.dmp sha256`
+![png](Images/43.png)
+
+then search using hash value on virus total 
+
+![png](Images/42.png)
+
+Answer: `dexter`
 
 
+### Q23: Machine:POS In the POS malware whitelist. What application was specific to Allsafecybersec?
+
+search in the dumped process above using strings and grep for allsafe or _ in a given answer format 
+
+![png](Images/44.png)
 
 
+Answer: `allsafe_protector.exe`
 
 
+### Q24: Machine:POS What is the name of the file the malware was initially launched from?
+
+I started with *consoles* but found nothing 
+
+![png](Images/45.png)
+
+then I used *iehistory* plugin which used to display internet explorer browser history 
+
+`volatility_2.exe -f POS-01-c4e8f786.vmss --profile=Win7SP1x86_23418 iehistory`
+
+![png](Images/46.png)
+
+Answer: `allsafe_update.exe`
 
 
-
-
-
-
-
-
-
+# The end. I hope this has been helpful to you.
 
 
 
