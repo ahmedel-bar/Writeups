@@ -237,6 +237,8 @@ Answer: `TeamViewer.exe`
 
 ### Q15: Machine:Target1 It appears the attackers also used a built-in remote access method. What IP address did they connect to?
 
+turn back to the netscan plugin
+
 The mstsc.exe process corresponds to the Remote Desktop Connection tool, which allows users to remotely access other systems. 
 Its presence may indicate remote access activity.
 
@@ -249,14 +251,80 @@ Answer: `10.1.1.21`
 
 ### Q16: Machine:Target2 It appears the attacker moved latterly from the front desk machine to the security admins (Gideon) machine and dumped the passwords. What is Gideon's password?
 
+The consoles plugin was used to retrieve command history and identify commands executed on the machine.
+
+`volatility_2.exe -f target2-6186fe9f.vmss --profile=Win7SP1x86_23418 consoles`
+
+I observed this 
+
+![png](Images/27.png)
+
+*wce.exe*  windows credential editor is used to dump credential 
+
+so, now we need to dump w.tmp to see all dumped credentials  as we did in the `Q12`
+
+start with *filescan* to know file offset 
+
+![png](Images/28.png)
+
+then dump file using *dumpfiles* plugin 
+
+![png](Images/29.png)
+
+then open the file and you will find the answer
+
+![png](Images/30.png)
+
+Answer: `t76fRJhS`
 
 
+### Q17: Machine:Target2 Once the attacker gained access to "Gideon," they pivoted to the AllSafeCyberSec domain controller to steal files. It appears they were successful. What password did they use?
+
+using the same plugin in previous question *consoles*
+
+![png](Images/31.png)
 
 
+Answer: `123qwe!@#`
 
 
+### Q18: Machine:Target2 What was the name of the RAR file created by the attackers?
+
+you can find the answer from the screenshot above 
+
+![png](Images/32.png)
+
+Answer: `crownjewlez.rar`
 
 
+### Q19: Machine:Target2 How many files did the attacker add to the RAR archive?
+
+I started with filescan to find file offset to dump it and see how many files in but found nothing
+
+![png](Images/33.png)
+
+so, I used cmdscan to know the PID of the process that run the commands to dump it 
+`olatility_2.exe -f target2-6186fe9f.vmss cmdscasn`
+
+![png](Images/34.png)
+
+then dump the process using *memdump*
+
+`volatility_2.exe -f target2-6186fe9f.vmss --profile=Win7SP1x86_23418 memdump -p 3048 -D <dir to dump in>`
+
+![png](Images/35.png)
+
+The memory dump was analyzed using the strings utility to extract readable content and identify the executed RAR command.
+
+The strings utility with Unicode support (-el) was used to extract readable text from the memory dump,
+and the output was saved to a text file for easier inspection of the RAR command.
+
+`strings -el 3048.dmp > dd.txt`
+then open .txt file using notepad  and search for  `crownjewlez.rar`
+
+![png](Images/36.png)
+
+Answer: `3`
 
 
 
