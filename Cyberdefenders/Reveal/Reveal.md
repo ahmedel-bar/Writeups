@@ -57,7 +57,7 @@ Answer: `davwwwroot`
 #### Q5: What is the MITRE ATT&CK sub-technique ID that describes the execution of a second-stage payload using a Windows utility to run the malicious file?
 as you observe from the previous question, the attacker used rundll32 to load a DLL file. 
 
-so I searcehed in [Mittre](https://attack.mitre.org/) using rundll
+so I searcehed in [Mitre](https://attack.mitre.org/) using rundll
 
 ![lol](Images/5.png)
 
