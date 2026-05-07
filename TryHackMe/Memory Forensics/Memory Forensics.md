@@ -55,43 +55,59 @@ To complete your forensic timeline, you should also have a look at what other in
 ```
 
 ### Q1: When was the machine last shutdown?
-
-First I used Volatility 3 to print shutdowntime from registry but couldn't find the answer 
+for this you need to show registry value that contains shutdowntime
+so I used printkey to print registry key related to shutdown
+`python3 volatility3/vol.py -f Snapshot19_1609159453792.vmem windows.registry.printkey --key "ControlSet001\Control\Windows"`
 
 ![Photo](Images/6.png)
 
-So, I turned back to volatility3 
-download volatility 2 `git clone https://github.com/volatilityfoundation/volatility.git`
+Answer: `2020-12-27 22:50:12`
 
-Firstly you need to identify image profile 
+
+### Q2: What did John write?
+For this task, it was necessary to retrieve commands executed through the command prompt using the *consoles* plugin. 
+Since this plugin is not available in Volatility 3, I used Volatility 2 to perform the analysis.
+
+To download volatility2  use this command
+`git clone https://github.com/volatilityfoundation/volatility.git`
+
+First, you need to identify imageinfo 
 `python volatility/vol.py -f Snapshot6_1609157562389.vmem imageinfo`
+
 ![Photo](Images/7.png)
 
-Answer: ``
+then use consoles plugin
+`python volatility/vol.py -f Snapshot6_1609157562389.vmem --profile=Win7SP1x64 consoles`
+
+![Photo](Images/8.png)
+
+Answer: `You_found_me`
+
+
+## Task4: TrueCrypt
+```
+A common task of forensic investigators is looking for hidden partitions and encrypted files, as suspicion arose when TrueCrypt was found on the suspect's machine and an encrypted partition was found. The interrogation did not yield any success in getting the passphrase from the suspect, however, it may be present in the memory dump obtained from the suspect's computer.
+```
+
+
+### Q1: What is the TrueCrypt passphrase?
+
+First, it is necessary to identify the memory profile of the dump file using the imageinfo plugin because each task uses a different memory dump image.
+
+![Photo](Images/9.png)
+
+TrueCrypt is a disk encryption software used to protect files, partitions, and entire drives by encrypting data with a password or encryption key.
+
+volatility has plugin called *truecryptpassphrase* which retrive passphrase of true crypt software
+`python volatility/vol.py -f Snapshot14_1609164553061.vmem --profile=Win7SP1x64 truecryptpassphrase`
+
+![Photo](Images/10.png)
+
+Answer: `forgetmenot`
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# The End, I hope you find it useful.
 
 
 
