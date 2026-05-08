@@ -2,14 +2,17 @@
 
 ## Lab Link [Brains](https://tryhackme.com/room/brains)
 
+<img width="593" height="593" alt="image" src="https://github.com/user-attachments/assets/0a7295ff-c512-439d-950c-894d15751d66" />
 
 ## Task 1 | Red: Exploit the Server!
 
 ### Q1: What is the content of flag.txt in the user's home folder?
 First, I scanned the target machine using Nmap to identify open ports that could potentially be exploited.
+`nmap -p- <target-ip>`
 
+![nmap](Images/1.png)
 
-
+As you can see, the IBM Db2 database service is running on port 50000.
 
 
 
