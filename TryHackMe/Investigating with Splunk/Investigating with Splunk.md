@@ -105,6 +105,8 @@ for this question, I used those eventIDs
 - index=main  EventID=4103 OR EventID=4104
 ![nnm](Images/11.png)
 
+Answer: `79`
+
 
 ### Q9: An encoded Powershell script from the infected host initiated a web request. What is the full URL?
 First, I listed all commands to investigate them manually. Then, I filtered the results using -enc to identify only the encoded commands.
