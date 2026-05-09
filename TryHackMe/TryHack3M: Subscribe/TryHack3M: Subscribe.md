@@ -201,6 +201,7 @@ The primary SQL query syntax consists of the SELECT statement, which retrieves s
 SELECT <parameter, parameter> FROM <table> WHERE <condition>;
 
 so, I appended FROM in my query
+![ah](Images/36.png)
 
 Answer: `TryHack3M_users`
 
