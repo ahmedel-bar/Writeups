@@ -134,10 +134,18 @@ then use this command to retrive user and password
 
 ![ah](Images/28.png)
 
-use credential to login
+use credential to login then set options as Sign up 
+then click here
+![ah](Images/29.png)
+
+you will redirect to this page 
+
+![ah](Images/30.png)
+
+use this and you will find the answer 
 
 
-
+![ah](Images/31.png)
 
 
 Answer: `TryHack3M{3MSUBSCRIBERS}`
@@ -155,135 +163,49 @@ Answer: `10530`
 
 ### Q2: What is the web hacking tool used by the attacker to exploit the vulnerability on the website?
 
+By reviewing the User-Agent field in the captured requests, the web hacking tool used by the attacker was identified.
 
+![ah](Images/32.png)
 
-Answer: ``
+Answer: `sqlmap`
 
 
 ### Q3: How many total events were observed related to the attack?
+filter using user-agent above 
 
+![ah](Images/33.png)
 
+Answer: `158`
 
+### Q4: What is the observed IP address of the attacker?
+using the same filter and logs 
+or the source ip used the malicious user-agent
+![ah](Images/34.png)
 
-Answer: ``
 
+Answer: `83.45.212.17`
 
 
+### Q5: How many events were observed from the attacker's IP?
 
-Answer: ``
+filter only by attacker source-ip 
 
+![ah](Images/35.png)
 
 
+Answer: `184`
 
-Answer: ``
+### Q6: What is the table used by the attacker to execute the attack?
 
+The primary SQL query syntax consists of the SELECT statement, which retrieves specific columns from a table based on a given condition.
+SELECT <parameter, parameter> FROM <table> WHERE <condition>;
 
+so, I appended FROM in my query
 
+Answer: `TryHack3M_users`
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## The End 
+# I hope you find it useful.
 
