@@ -32,21 +32,150 @@ Further analysis within the browser’s Inspect panel revealed an invite.js file
 
 ![ah](Images/4.png)
 
+by analyzing invite.js it turned out that the browser must access the website using the specified hostname instead of the IP address.
+
+![ah](Images/5.png)
+
+so, open host file as admin `C:\Windows\System32\drivers\etc\hosts`
+and add this line `10.114.158.247 capture3millionsubscribers.thm`
+![ah](Images/6.png)
+
+if you try to open the url direct from browser you will find this 
+![ah](Images/7.png)
+
+
+Therefore, the request must be sent using POST method by replacing sign-up.php with invite.php using the browser’s Inspect feature.
+![ah](Images/8.png)
+
+and add any value in `invite code` box to send request 
+![ah](Images/9.png)
+
+Answer: `VkXgo:Invited30MnUsers`
+
+### Q2: What is the password for the user guest@hackme.thm?
+
+Now, use the invite code obtained from the previous question and submit it in the invite code field.
+
+![ah](Images/10.png)
+
+Answer: `wedidit1010`
+
+
+### Q3: What is the secure token for accessing the admin panel?
+now, use the credential above to login 
+![ah](Images/11.png)
+
+![ah](Images/12.png)
+
+the free room doesn't that useful, so open the VIP one an go to inspect 
+
+change isVIP=false to true then refresh the site
+
+![ah](Images/13.png)
+
+you now can access the vip room 
+
+![ah](Images/14.png)
+
+but when you try to start the machine to access attack box will find this alert 
+
+![ah](Images/15.png)
+
+by analyze advanced_red_teaming.php you will find this soure
+
+![ah](Images/16.png)
+
+then try to access this path
+
+![ah](Images/17.png)
+
+by apply ls command you will find these files 
+![ah](Images/18.png)
+
+then print config.php content
+![ah](Images/19.png)
+
+Answer: `ACC#SS_TO_ADM1N_P@NEL`
+
+
+### Q4: What is the flag value after enabling the registration feature and getting 3M subscribers on the platform?
+remeber to add domain to host file 
+![ah](Images/22.png)
+
+after trying access the admin panel from prevoius question 
+![ah](Images/20.png)
+
+I can't access the site, so I used gobuster to bruteforece directories 
+
+![ah](Images/21.png)
+
+then access login endpoint 
+
+![ah](Images/23.png)
+
+use access token as authentic code 
+![ah](Images/24.png)
+now, you need user and password
+you have to ways
+using hydra and bruteforce but this will take much much time
+the second is to use sqlmap to dump info 
+
+try any user and password to understand the request 
+![ah](Images/25.png)
+
+By analyzing the login.js file, the API endpoint and JSON request format were identified, 
+then SQLMap was used to test the login functionality for SQL injection vulnerabilities.
+
+![ah](Images/26.png)
+
+then use this command to retrive user and password
+
+`sqlmap -u "http://admin1337special.hackme.thm:40009/api/login.php" --method POST --data='{"username":"admin","password":"test"}' --headers="Content-Type: application/json" --batch --dump`
+
+![ah](Images/28.png)
+
+use credential to login
 
 
 
 
 
+Answer: `TryHack3M{3MSUBSCRIBERS}`
 
 
 
 
+## Task 3 : Detection
+### Q1: How many logs are ingested in the Splunk instance?
+change time range to all time and search using all indexes
+
+![ah](Images/27.png)
+
+Answer: `10530`
+
+### Q2: What is the web hacking tool used by the attacker to exploit the vulnerability on the website?
+
+
+
+Answer: ``
+
+
+### Q3: How many total events were observed related to the attack?
 
 
 
 
+Answer: ``
 
 
+
+
+Answer: ``
+
+
+
+
+Answer: ``
 
 
 
