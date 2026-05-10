@@ -182,6 +182,44 @@ Based on the PowerShell logs, we can retrieve the contents of the exfiltrated da
 
 ### Q1: What software is used by the attacker to host its presumed file/payload server?
 open .pcap file using wireshark
+search using C2 ip in the previous question 
+`ip.addr == 167.71.211.113 `
+then follow < http stream 
+![ll](Images/17.png)
+
+![ll](Images/18.png)
+
+Answer: `Python`
+
+
+### Q2: What HTTP method is used by the C2 for the output of the commands executed by the attacker?
+
+the answer is in the previous question   
+
+Answer: `POST`
+
+
+### Q3: What is the protocol used during the exfiltration activity?
+the last question from task 3 is nslookup
+
+Answer: `dns`
+
+### Q4: What is the password of the exfiltrated file?
+
+search using POST as http request and frame contains password but I couldn't find the answer 
+
+![ll](Images/19.png)
+so the password might be encoded 
+
+so, I turned to filter only by POST method 
+I found answer in this frame 
+![ll](Images/20.png)
+the command is encoded 
+use cyberchef to decode 
+
+![ll](Images/21.png)
+
+Answer: `%p9^3!lL^Mz47E2GaT^y`
 
 
 
@@ -191,14 +229,7 @@ open .pcap file using wireshark
 
 
 
-
-
-
-
-
-
-
-
+# The End I hope you find it useful.
 
 
 
