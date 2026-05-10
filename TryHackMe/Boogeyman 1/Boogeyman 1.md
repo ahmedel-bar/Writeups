@@ -221,49 +221,30 @@ use cyberchef to decode
 
 Answer: `%p9^3!lL^Mz47E2GaT^y`
 
+### Q5: What is the credit card number stored inside the exfiltrated file?
+
+![ll](Images/22.png)
+
+use this command to extract the exfilterated data 
+`tshark -r capture.pcapng -Y 'dns' -T fields -e dns.qry.name | grep ".bpakcaging.xyz" | cut -f1 -d '.'|grep -v -e "files" -e "cdn" |uniq | tr -d '\n' > out.txt`
+then decode data to save it as exfilterated file extension
+`cat out.txt | xxd -r -p > protected.kdbxD`
+
+![ll](Images/23.png)
+
+open the file using keepass2 and user the pass above 
+
+![ll](Images/24.png)
 
 
+![ll](Images/25.png)
 
-
+Answer: `4024007128269551`
 
 
 
 
 # The End I hope you find it useful.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
