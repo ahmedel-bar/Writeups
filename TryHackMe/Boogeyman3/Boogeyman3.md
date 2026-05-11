@@ -107,15 +107,32 @@ So, you need to filter using these processes one by one
 ANswer: `fodhelper.exe`
 
 
+### Q7: Having a high privilege machine access, the attacker attempted to dump the credentials inside the machine. What is the GitHub link used by the attacker to download a tool for credential dumping?
+
+I filtered using this word *github* 
+
+![pho](Images/10.png)
+
+Answer: `https://github.com/gentilkiwi/mimikatz/releases/download/2.2.0-20220919/mimikatz_trunk.zip`
+
+
+### Q8: After successfully dumping the credentials inside the machine, the attacker used the credentials to gain access to another machine. What is the username and hash of the new credential pair? (format: username:hash)
+
+I filtered the logs using `sekurlsa`, which is a module used by Mimikatz to dump credentials from `lsass.exe`.
+
+![pho](Images/11.png)
+
+Answer: `itadmin:F84769D250EB95EB2D7D8B4A1C5613F2`
+
+
+### Q9: Using the new credentials, the attacker attempted to enumerate accessible file shares. What is the name of the file accessed by the attacker from a remote share?
+Firstly, I filtered the logs using the username itadmin to identify the hostname. Then, I filtered by that hostname and reviewed all commands executed through PowerShell.
+
+![pho](Images/12.png)
 
 
 
-
-
-
-
-
-
+ANswer: ``
 
 
 
