@@ -66,17 +66,45 @@ Answer: `"C:\Windows\System32\rundll32.exe" D:\review.dat,DllRegisterServer`
 
 ### Q4: The stage 1 payload established a persistence mechanism. What is the name of the scheduled task created by the malicious script?
 
+search using `scheduled task`
 
-Answer: ``
+![pho](Images/6.png)
+
+
+Answer: `Review`
 
 ### Q5: The execution of the implanted file inside the machine has initiated a potential C2 connection. What is the IP and port used by this connection? (format: IP:port)
 
+Filter the logs with `event.code:3`, which indicates a network connection event, and you will observe powershell.exe establishing a connection to the malicious C2 server over port 80.
 
-Answer: ``
+![pho](Images/7.png)
+
+I analyzed the IP address using [Virus Total](https://www.virustotal.com/)to verify whether it was malicious or not.
+
+![pho](Images/8.png)
+
+Answer: `165.232.170.151:80`
 
 
+### Q6: The attacker has discovered that the current access is a local administrator. What is the name of the process used by the attacker to execute a UAC bypass?
+
+I searched for most common bypass techniques and Found that 
+```
+Common processes used to UAC bypass
+fodhelper.exe
+eventvwr.exe
+computerdefaults.exe
+sdclt.exe
+slui.exe
+cmstp.exe
+```
+
+So, you need to filter using these processes one by one 
+
+![pho](Images/9.png)
 
 
+ANswer: `fodhelper.exe`
 
 
 
