@@ -64,11 +64,15 @@ I searched using implanted file and stage 1 payload
 Answer: `"C:\Windows\System32\rundll32.exe" D:\review.dat,DllRegisterServer`
 
 
+### Q4: The stage 1 payload established a persistence mechanism. What is the name of the scheduled task created by the malicious script?
 
 
+Answer: ``
+
+### Q5: The execution of the implanted file inside the machine has initiated a potential C2 connection. What is the IP and port used by this connection? (format: IP:port)
 
 
-
+Answer: ``
 
 
 
