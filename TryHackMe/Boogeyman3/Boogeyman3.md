@@ -130,184 +130,73 @@ Firstly, I filtered the logs using the username itadmin to identify the hostname
 
 ![pho](Images/12.png)
 
+`host.name: "WKSTN-0051.quicklogistics.org" and powershell.exe`
 
+![pho](Images/13.png)
 
-ANswer: ``
 
+ANswer: `IT_Automation.ps1`
 
 
+### Q10: After getting the contents of the remote file, the attacker used the new credentials to move laterally. What is the new set of credentials discovered by the attacker? (format: username:password)
 
+Within the same filter, the command after the one from the previous question contained the required credentials.
 
+![pho](Images/14.png)
 
+Answer: `QUICKLOGISTICS\allan.smith:Tr!ckyP@ssw0rd987`
 
 
 
+### Q11: What is the hostname of the attacker's target machine for its lateral movement attempt?
 
+within the same command in the previous question
 
+![pho](Images/15.png)
 
+Answer: `WKSTN-1327`
 
 
+### Q12: Using the malicious command executed by the attacker from the first machine to move laterally, what is the parent process name of the malicious command executed on the second compromised machine?
+I filtered the logs using the second machine’s hostname and the first machine’s username.
 
+![pho](Images/16.png)
 
+The attacker executed `ransomboogey.exe` through `wsmprovhost.exe`.
 
+Answer: `wsmprovhost.exe`
 
 
+### Q13: The attacker then dumped the hashes in this second machine. What is the username and hash of the newly dumped credentials? (format: username:hash)
+I used the same filter as in Q8, you can also filter using `*mimikatz.exe*`
+becuase it's the tool used in credential dump
 
+![pho](Images/17.png)
 
 
+Answer: `administrator:00f80f2538dcb54e7adc715c0e7091ec `
 
+### Q14: After gaining access to the domain controller, the attacker attempted to dump the hashes via a DCSync attack. Aside from the administrator account, what account did the attacker dump?
 
+The attacker abuses Active Directory replication permissions to make their machine request password data from the Domain Controller
+as if it were another Domain Controller.
 
+the module used in mimikatz to perform `dcsync` is  `lsadump::dcsync`
+so, I filtered using `dcsync`
 
+![pho](Images/18.png)
 
+Answer: `backupda`
 
 
+### Q15: After dumping the hashes, the attacker attempted to download another remote file to execute ransomware. What is the link used by the attacker to download the ransomware binary?
 
+As observed from Q12, the file downloaded to execute the ransomware was `ransomboogey.exe`. 
+Therefore, I filtered logs using `ransomboogey.exe` to identify the URL it was downloaded from.
 
+![pho](Images/19.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Answer: `http://ff.sillytechninja.io/ransomboogey.exe`
 
 
 
