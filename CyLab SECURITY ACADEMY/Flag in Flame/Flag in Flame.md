@@ -43,7 +43,7 @@ extract the hex then use [cyberchef](https://cyberchef.org/) to convert to ASCII
 Or you can use the command line with `xxd -r -p` to convert the hex string back into readable text.
 ![99](Images/6.png)
 
-the flag might be different from account to another
+*the flag might be different from account to another*
 Answer: `picoCTF{forensics_analysis_is_amazing_24d16895}`
 
 
