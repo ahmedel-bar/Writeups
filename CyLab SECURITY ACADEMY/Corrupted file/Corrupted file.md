@@ -30,7 +30,8 @@ Then, I ran `exiftool` again, and it successfully identified the file type.
 
 ![99](Images/3.png)
 
-After that, change file extension and open it using `explorer.exe` 
+After that, change file extension and open it using `explorer.exe`.
+
 *you can do these all steps using windows*
 
 ![99](Images/4.png)
