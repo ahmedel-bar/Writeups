@@ -1,5 +1,5 @@
 # Flag in Flame Writeup
-## lab link Flag in Flame](https://learn.cylabacademy.org/library?page=1&category=4)
+## lab link [Flag in Flame](https://learn.cylabacademy.org/library?page=1&category=4)
 
 ## Scenario
 ```
