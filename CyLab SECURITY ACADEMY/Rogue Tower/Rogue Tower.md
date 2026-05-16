@@ -25,6 +25,7 @@ This was followed by multiple POST requests, each of which contained a fragment 
 
 After collecting all Base64 fragments from the POST requests, I decoded them using CyberChef. 
 The decoded output was not readable, which indicated that it was likely encrypted using XOR.
+
 ![k](Images/4.png)
 
 I used the last eight digits of the IMSI value as a possible XOR key to decrypt the decoded data.
