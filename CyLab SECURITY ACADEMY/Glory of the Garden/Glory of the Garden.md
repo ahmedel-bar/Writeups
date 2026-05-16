@@ -1,5 +1,5 @@
 # Glory of the Garden Writeup
-## lab link [Glory of the Garden](https://learn.cylabacademy.org/library?page=1&category=4)
+## lab link [Glory of the Garden](https://learn.cylabacademy.org/library?page=2&category=4)
 
 ## Scenario
 ```
