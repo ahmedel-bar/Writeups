@@ -1,5 +1,5 @@
-# DISKO 1 Writeup
-## lab link [DISKO 1](https://learn.cylabacademy.org/library?page=2&category=4)
+# DISKO 2 Writeup
+## lab link [DISKO 2](https://learn.cylabacademy.org/library?page=2&category=4)
 
 ## Scenario
 ```
