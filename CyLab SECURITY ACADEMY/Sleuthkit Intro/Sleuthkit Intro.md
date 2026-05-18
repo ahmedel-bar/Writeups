@@ -32,12 +32,3 @@ Answer: `picoCTF{mm15_f7w!}`
 
 # The end. I hope this has been helpful to you.
 
-
-
-
-
-*the flag might be different from account to another*
-
-Answer: ``
-
-# The end. I hope this has been helpful to you.
