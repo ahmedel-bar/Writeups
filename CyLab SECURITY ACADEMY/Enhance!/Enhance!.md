@@ -6,7 +6,7 @@
 Download this image file and find the flag.
 ```
 
-Firstly, I downloaded the file using `wget` and opened it in the browser to see its content. 
+Firstly, I downloaded the file using `wget` and opened it in the browser to see its content, but it was normal svg image. 
 
 <img width="1835" height="349" alt="Screenshot 2026-05-18 184130" src="https://github.com/user-attachments/assets/6850baf9-5da5-4866-83da-6324582b1f0e" />
 
