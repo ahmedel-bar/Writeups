@@ -15,6 +15,7 @@ The ASCII view showed the flag directly inside the TCP payload.
 
 <img width="1919" height="962" alt="Screenshot 2026-05-18 152227" src="https://github.com/user-attachments/assets/44fa4557-246d-4e8d-9f56-463811b3dc90" />
 
+
 Then, I followed the TCP stream in Wireshark to view the full TCP conversation. The flag was visible in clear text inside the stream.
 
 
@@ -22,7 +23,9 @@ Then, I followed the TCP stream in Wireshark to view the full TCP conversation. 
 
 <img width="1842" height="980" alt="Screenshot 2026-05-18 152350" src="https://github.com/user-attachments/assets/d8e9842f-0d58-4e5a-afc8-743fc2282827" />
 
+
 The extracted flag contained extra spaces, so I used CyberChef to remove the whitespace and recover the correct flag format.
+
 
 <img width="1532" height="525" alt="Screenshot 2026-05-18 152507" src="https://github.com/user-attachments/assets/17cf7120-cb9b-4506-a259-fa7f7c0d01f4" />
 
