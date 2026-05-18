@@ -1,5 +1,5 @@
-# Sleuthkit Intro Writeup
-## lab link [Sleuthkit Intro](https://learn.cylabacademy.org/library?page=4&category=4)
+# Packets Primer Writeup
+## lab link [Packets Primer](https://learn.cylabacademy.org/library?page=4&category=4)
 
 ## Scenario
 ```
