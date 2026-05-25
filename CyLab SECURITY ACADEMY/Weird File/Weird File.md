@@ -1,5 +1,5 @@
 # Operation Oni Writeup
-## lab link [Operation Oni](https://learn.cylabacademy.org/library?page=4&category=4)
+## lab link [Operation Oni](https://learn.cylabacademy.org/library?page=5&category=4)
 
 ## Scenario
 ```
