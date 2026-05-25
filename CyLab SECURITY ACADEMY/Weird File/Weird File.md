@@ -1,5 +1,5 @@
-# Operation Oni Writeup
-## lab link [Operation Oni](https://learn.cylabacademy.org/library?page=5&category=4)
+# Weird File Writeup
+## lab link [Weird File](https://learn.cylabacademy.org/library?page=5&category=4)
 
 ## Scenario
 ```
